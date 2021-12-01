@@ -37,6 +37,8 @@ module	monkey_moveCollision	(
 
 
 logic footing; 
+logic hitleft;
+logic hitright;
 assign footing = ((onRope) | (onLedge & collision)); 
 
 // a module used to generate the  ball trajectory.  
@@ -83,7 +85,6 @@ begin
 		end
 		
 		if  (footing) begin 
-			
 			Yspeed <= 0;
 			if (upPressed) begin 
 				//Rope Climbing
@@ -97,16 +98,12 @@ begin
 				//Rope Climbing 
 				Yspeed <= 100;
 			end
-			
 		end
-		
-	
-		
-	
+
 		// perform  position and speed integral only 30 times per second 
 		
 		if (startOfFrame == 1'b1) begin 
-		
+				if (collision && HitEdgeCode [2] == 1 && Yspeed > 0) Yspeed <= -1;
 				topLeftY_FixedPoint  <= topLeftY_FixedPoint + Yspeed; // position interpolation 
 				
 				if (Yspeed < MAX_Y_SPEED ) //  limit the spped while going down 
@@ -127,31 +124,45 @@ always_ff@(posedge clk or negedge resetN)
 begin
 	if(!resetN)
 	begin
+		hitright <= 1'b0;
+		hitleft <= 1'b0;
 		Xspeed	<= INITIAL_X_SPEED;
 		topLeftX_FixedPoint	<= INITIAL_X * FIXED_POINT_MULTIPLIER;
 	end
 	
 	else begin
-	
+
 		//Default value of Xspeed is 0
 		Xspeed<= INITIAL_X_SPEED;
 		
-		if (rightPressed) begin 
+		if (rightPressed && !hitright) begin 
 			//Handling edge of screen limitations, left side
-			if (!(collision && HitEdgeCode [1] == 1) )
-				Xspeed <= 200;
+//			if (collision && HitEdgeCode [1] == 1 && Xspeed > 0) Xspeed <= -Xspeed;
+			Xspeed <= 200;
 		end        
 			
-		if (leftPressed) begin 
+		if (leftPressed && !hitleft) begin 
 			//Handling edge of screen limitations, right side
-			if (!(collision && HitEdgeCode [3] == 1)) 
-				Xspeed <= -200;
+//			if (collision && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= -Xspeed;
+			Xspeed <= -200;
+		end
+		if ((collision && (HitEdgeCode [3] == 1 || HitEdgeCode [1] == 1)) && !(HitEdgeCode [0] == 1 || HitEdgeCode [2] == 1)) begin
+			if (Xspeed > 0 && HitEdgeCode [1] == 1) begin
+				Xspeed <= 0;
+				hitright<=1'b1;
+			end
+			if (Xspeed < 0 && HitEdgeCode [3] == 1) begin
+				Xspeed <= 0;
+				hitleft <= 1'b1;
+			end
 		end
 		
-		
 		//Updating the X  value using Xspeed
-		if (startOfFrame == 1'b1 )
+		if (startOfFrame == 1'b1) begin
+			hitright <= 1'b0;
+			hitleft <= 1'b0;
 			topLeftX_FixedPoint  <= topLeftX_FixedPoint + Xspeed;
+		end
 
 	end		
 					
