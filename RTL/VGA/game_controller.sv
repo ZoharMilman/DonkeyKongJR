@@ -12,6 +12,8 @@ module	game_controller	(
 			input	logic	drawing_request_1,
 			input logic drawing_request_2,
 			input logic drawing_request_3, 
+			
+			output logic ropeCollision,  // active in case of collision between the monkey and a rope
 			output logic collision, 	 // active in case of collision between two objects
 			output logic SingleHitPulse // critical code, generating A single pulse in a frame 
 );
@@ -25,7 +27,7 @@ module	game_controller	(
 assign collision = ( (drawing_request_Monkey &&  drawing_request_1) || (drawing_request_Monkey &&  drawing_request_2) 
 						|| (drawing_request_Monkey &&  drawing_request_3));// any collision 
 						 						
-
+assign ropeCollision = (drawing_request_Monkey && drawing_request_3);
 
 logic flag ; // a semaphore to set the output only once per frame / regardless of the number of collisions 
 

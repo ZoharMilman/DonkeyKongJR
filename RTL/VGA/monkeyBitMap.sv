@@ -61,10 +61,17 @@ logic[0:31][0:63][7:0] object_colors = {
 //hit bit map has one bit per edge:  hit_colors[3:0] =   {Left, Top, Right, Bottom}	 
 //there is one bit per edge, in the corner two bits are set  
  logic [0:3] [0:3] [3:0] hit_colors = 
-		   {16'hC446,     
+		   {16'h0440,     
 			16'h8C62,    
 			16'h8932, 
-			16'h9113}; 
+			16'h0110}; 
+			
+			
+// logic [0:3] [0:3] [3:0] hit_colors = 
+//		   {16'hC446,     
+//			16'h8C62,    
+//			16'h8932, 
+//			16'h9113}; 
  // pipeline (ff) to get the pixel color from the array 	 
 //////////--------------------------------------------------------------------------------------------------------------= 
 always_ff@(posedge clk or negedge resetN) 
