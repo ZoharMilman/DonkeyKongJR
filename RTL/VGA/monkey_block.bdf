@@ -232,7 +232,23 @@ agreement for further details.
 	(input)
 	(rect 80 568 248 584)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "collision" (rect 5 0 44 12)(font "Arial" ))
+	(text "collision" (rect 5 0 43 12)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 80 600 248 616)
+	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
+	(text "num_hit" (rect 5 0 44 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -504,8 +520,8 @@ agreement for further details.
 	(port
 		(pt 0 176)
 		(input)
-		(text "onLedge" (rect 0 0 41 12)(font "Arial" ))
-		(text "onLedge" (rect 21 171 62 183)(font "Arial" ))
+		(text "num_hit" (rect 0 0 38 12)(font "Arial" ))
+		(text "num_hit" (rect 21 171 59 183)(font "Arial" ))
 		(line (pt 0 176)(pt 16 176))
 	)
 	(port
@@ -551,13 +567,13 @@ agreement for further details.
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MAX_Y_SPEED"
-		"300"
+		"230"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 216 224))
 	)
-	(annotation_block (parameter)(rect 616 264 824 378))
+	(annotation_block (parameter)(rect 848 312 1056 432))
 )
 (connector
 	(text "pixelY[10..0]" (rect 338 392 397 409)(font "Intel Clear" ))
@@ -770,19 +786,6 @@ agreement for further details.
 	(pt 616 560)
 )
 (connector
-	(pt 616 608)
-	(pt 608 608)
-)
-(connector
-	(pt 608 608)
-	(pt 608 616)
-)
-(connector
-	(text "HitEdgeCode[0]" (rect 250 600 324 617)(font "Intel Clear" ))
-	(pt 232 616)
-	(pt 608 616)
-)
-(connector
 	(pt 224 592)
 	(pt 248 592)
 )
@@ -792,8 +795,14 @@ agreement for further details.
 	(pt 616 592)
 )
 (connector
+	(text "collision" (rect 410 560 448 577)(font "Intel Clear" ))
 	(pt 248 576)
 	(pt 616 576)
+)
+(connector
+	(text "num_hit" (rect 258 592 296 609)(font "Intel Clear" ))
+	(pt 248 608)
+	(pt 616 608)
 )
 (junction (pt 248 592))
 (text "// (c) Technion IIT, Department of Electrical Engineering 2021" (rect 168 24 527 43)(font "Intel Clear" (font_size 8)))

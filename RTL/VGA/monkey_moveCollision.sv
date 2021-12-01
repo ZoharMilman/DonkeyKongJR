@@ -23,7 +23,7 @@ module	monkey_moveCollision	(
 					//Collision related inputs
 					input logic collision,
 					input logic onRope,
-					input logic onLedge,  
+					input logic num_hit,  
 					input	logic	[3:0] HitEdgeCode, //one bit per edge 
 
 					output	 logic signed 	[10:0]	topLeftX, // output the top left corner 
@@ -31,11 +31,10 @@ module	monkey_moveCollision	(
 					
 );
 
-
-logic footing; 
-//logic hitleft;
-//logic hitright;
-assign footing = ((onRope) | (onLedge & collision)); 
+logic onLedge;
+assign onLedge = (HitEdgeCode & collision & !num_hit);
+logic footing;
+assign footing = (onRope | onLedge); 
 
 // a module used to generate the  ball trajectory.  
 
