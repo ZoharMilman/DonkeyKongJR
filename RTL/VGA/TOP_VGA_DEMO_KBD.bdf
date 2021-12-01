@@ -1811,7 +1811,7 @@ agreement for further details.
 (text "25 MHz Clock genrtaor" (rect 88 -40 222 -21)(font "Intel Clear" (font_size 8)))
 (text "KEY0  is Reset - Active Low" (rect -264 176 -104 195)(font "Intel Clear" (font_size 8)))
 (text "Update the objects_mux" (rect 376 368 521 387)(font "Intel Clear" (font_size 8)))
-(text "Update the game_controller" (rect 376 584 542 603)(font "Intel Clear" (font_size 8)))
+(text "Update the game_controller" (rect 304 576 470 595)(font "Intel Clear" (font_size 8)))
 (text "The background" (rect -496 440 -401 459)(font "Intel Clear" (font_size 8)))
 (text "Add here the \"square_object\" and  \"random\" modules" (rect -560 1016 -244 1035)(font "Intel Clear" (font_size 8)))
 (text "Number display bitmap" (rect 456 1016 598 1035)(font "Intel Clear" (font_size 8)))
