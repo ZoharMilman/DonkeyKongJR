@@ -11,22 +11,27 @@ module	objects_mux	(
 //		--------	Clock Input	 	
 					input		logic	clk,
 					input		logic	resetN,
-		   // smiley 
-					input		logic	smileyDrawingRequest, // two set of inputs per unit
-					input		logic	[7:0] smileyRGB, 
+		   // monkey 
+					input		logic	monkeyDrawingRequest, // two set of inputs per unit
+					input		logic	[7:0] monkeyRGB, 
 					     
-		  // add the box here 
-					input 	logic rec_DR,
-					input		logic [7:0] rec_RGB,
+		  // numbers 
+					input		logic anyNumDR,
+					input 	logic [11:0] numbersDR,
+					input		logic [11:0] [7:0] numbersRGB,
 					
 					
 		  // background 
-					input    logic HartDrawingRequest, // box of numbers
-					input		logic	[7:0] hartRGB,   
+					input    logic ropesDrawingRequest, // box of numbers
+					input		logic	[7:0] ropesRGB,   
 					input		logic	[7:0] backGroundRGB, 
 			  
 				   output	logic	[7:0] RGBOut
 );
+
+
+int i; 
+
 
 always_ff@(posedge clk or negedge resetN)
 begin
@@ -35,17 +40,27 @@ begin
 	end
 	
 	else begin
-		if (smileyDrawingRequest == 1'b1 )   
-			RGBOut <= smileyRGB;  //first priority 
+		if (monkeyDrawingRequest == 1'b1 )   
+			RGBOut <= monkeyRGB;  //first priority 
 			
 			
 		 
-				else if ( rec_DR == 1'b1 )
-						RGBOut <= rec_RGB;
-		 
-		 
-				else if (HartDrawingRequest == 1'b1)
-						RGBOut <= hartRGB;
+//				else if ( rec_DR == 1'b1 )
+//						RGBOut <= rec_RGB;
+				
+				//Check for every number if it has a drawing request
+				else if (anyNumDR) begin
+					for (i = 0; i < 12; i = i + 1) begin
+				
+							if (numbersDR[i]) 
+								RGBOut <= numbersRGB[i];
+							
+						  end
+				end
+				
+				
+				else if (ropesDrawingRequest == 1'b1)
+						RGBOut <= ropesRGB;
 						else 
 							RGBOut <= backGroundRGB ; // last priority 
 		end ; 

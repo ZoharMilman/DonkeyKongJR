@@ -13,11 +13,13 @@ module MULTIPLE_NUMBERS_DISPLAY (
 			
 			
 			//Collision inputs
-			input logic singleHit
+			input logic singleHit,
 			
 			//We have a drawing request and rgbout for each of the 12 numbers
-			output logic [11:0] drawingRequest, //output that the pixel should be dispalyed 
-			output logic [11:0] [7:0] RGBout	
+			output logic [11:0] numbersDR, //output that the pixel should be dispalyed 
+			output logic anyNumDR,					//An output to be set to 1 when there is a number drawing request
+			output logic [11:0] [7:0] numbersRGB
+			
 );
 
 
@@ -61,13 +63,16 @@ generate
 										.KeyPad(4'b0000), 
 										.topLeftX(positions[i][21:11]),
 										.topLeftY(positions[i][11:0]),
-										.numDR(drawingRequest[i]),
-										.numRGB(RGNout[i])
+										.numDR(numbersDR[i]),
+										.numRGB(numbersRGB[i])
 									 );
 									 
 	end
 endgenerate 
 
+assign anyNumDR = (numbersDR[0] || numbersDR[1] || numbersDR[2] || numbersDR[3] || numbersDR[4]
+					 || numbersDR[5] || numbersDR[6] || numbersDR[7] || numbersDR[8] || numbersDR[9]
+					 || numbersDR[10] || numbersDR[11]);
 
 
 endmodule  
