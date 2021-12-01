@@ -19,10 +19,6 @@ module	monkey_moveCollision	(
 					input logic rightPressed, 
 					input logic downPressed, 
 					input logic upPressed, 
-						
-						
-					//input	logic	Y_direction,  //change the direction in Y to up  
-					//input	logic	toggleX, 	//toggle the X direction 
 					
 					//Collision related inputs
 					input logic collision,
@@ -37,8 +33,8 @@ module	monkey_moveCollision	(
 
 
 logic footing; 
-logic hitleft;
-logic hitright;
+//logic hitleft;
+//logic hitright;
 assign footing = ((onRope) | (onLedge & collision)); 
 
 // a module used to generate the  ball trajectory.  
@@ -124,8 +120,8 @@ always_ff@(posedge clk or negedge resetN)
 begin
 	if(!resetN)
 	begin
-		hitright <= 1'b0;
-		hitleft <= 1'b0;
+//		hitright <= 1'b0;
+//		hitleft <= 1'b0;
 		Xspeed	<= INITIAL_X_SPEED;
 		topLeftX_FixedPoint	<= INITIAL_X * FIXED_POINT_MULTIPLIER;
 	end
@@ -135,66 +131,43 @@ begin
 		//Default value of Xspeed is 0
 		Xspeed<= INITIAL_X_SPEED;
 		
-		if (rightPressed && !hitright) begin 
+		if (rightPressed && topLeftX < 570) begin 
 			//Handling edge of screen limitations, left side
 //			if (collision && HitEdgeCode [1] == 1 && Xspeed > 0) Xspeed <= -Xspeed;
 			Xspeed <= 200;
 		end        
 			
-		if (leftPressed && !hitleft) begin 
+		if (leftPressed && topLeftX > -9) begin 
 			//Handling edge of screen limitations, right side
 //			if (collision && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= -Xspeed;
 			Xspeed <= -200;
 		end
-		if ((collision && (HitEdgeCode [3] == 1 || HitEdgeCode [1] == 1)) && !(HitEdgeCode [0] == 1 || HitEdgeCode [2] == 1)) begin
-			if (Xspeed > 0 && HitEdgeCode [1] == 1) begin
-				Xspeed <= 0;
-				hitright<=1'b1;
-			end
-			if (Xspeed < 0 && HitEdgeCode [3] == 1) begin
-				Xspeed <= 0;
-				hitleft <= 1'b1;
-			end
-		end
+//		if (topLeftX == 570 || topLeftX == 4) begin
+//			if (Xspeed > 0 && topLeftX == 570) begin
+//				Xspeed <= 0;
+//				hitright<=1'b1;
+//			end
+//			if (Xspeed < 0 && topLeftX == 4) begin
+//				Xspeed <= 0;
+//				hitleft <= 1'b1;
+//			end
+//		end
 		
 		//Updating the X  value using Xspeed
 		if (startOfFrame == 1'b1) begin
-			hitright <= 1'b0;
-			hitleft <= 1'b0;
+//			hitright <= 1'b0;
+//			hitleft <= 1'b0;
 			topLeftX_FixedPoint  <= topLeftX_FixedPoint + Xspeed;
 		end
 
 	end		
 					
 			
+//////------------------------------------------------------------------------------------------------------------
+	
+	
+	
 
-	
-	
-	
-//	else begin
-//	
-//				
-//	//  an edge input is tested here as it is a very short instance   
-//
-//				
-//	// collisions with the sides 			
-//				if (collision && HitEdgeCode [3] == 1) begin  
-//					if (Xspeed < 0 ) // while moving left
-//							Xspeed <= -Xspeed ; // positive move right 
-//				end
-//			
-//				if (collision && HitEdgeCode [1] == 1 ) begin  // hit right border of brick  
-//					if (Xspeed > 0 ) //  while moving right
-//							Xspeed <= -Xspeed  ;  // negative move left    
-//				end	
-//		   
-//			
-//		if (startOfFrame == 1'b1 )//&& Yspeed != 0) 
-//	
-//				        topLeftX_FixedPoint  <= topLeftX_FixedPoint + Xspeed;
-//			
-//					
-//	end
 end
 //
 ////get a better (64 times) resolution using integer   
