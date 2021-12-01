@@ -557,7 +557,7 @@ agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 216 224))
 	)
-	(annotation_block (parameter)(rect 824 312 1032 426))
+	(annotation_block (parameter)(rect 616 264 824 378))
 )
 (connector
 	(text "pixelY[10..0]" (rect 338 392 397 409)(font "Intel Clear" ))
