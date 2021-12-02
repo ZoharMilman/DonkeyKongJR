@@ -30,30 +30,56 @@ module MULTIPLE_NUMBERS_DISPLAY (
 
 
 //An array that contains for each number its location. 
-logic [11:0] [21:0] positions = {
-	{11'd150, 11'd150},
-	{11'd150, 11'd200},
-	{11'd150, 11'd250},
-	{11'd200, 11'd150},
-	{11'd200, 11'd200},
-	{11'd200, 11'd250},
-	{11'd250, 11'd150},
-	{11'd250, 11'd200},
-	{11'd250, 11'd250},
-	{11'd300, 11'd150},
-	{11'd300, 11'd200},
-	{11'd300, 11'd250}
-};
+
+
+
+//logic [0:11] [0:1] [0:11] positions = 
+//{
+//	{11'd150, 11'd150},
+//	{11'd150, 11'd200},
+//	{11'd150, 11'd250},
+//	{11'd200, 11'd150},
+//	{11'd200, 11'd200},
+//	{11'd200, 11'd250},
+//	{11'd250, 11'd150},
+//	{11'd250, 11'd200},
+//	{11'd250, 11'd250},
+//	{11'd300, 11'd150},
+//	{11'd300, 11'd200},
+//	{11'd300, 11'd250}
+//};
+
+//logic [0:1] [0:11] [0:11] positions = {
+//	{11'd150, 11'd150},
+//	{11'd150, 11'd200},
+//	{11'd150, 11'd250},
+//	{11'd200, 11'd150},
+//	{11'd200, 11'd200},
+//	{11'd200, 11'd250},
+//	{11'd250, 11'd150},
+//	{11'd250, 11'd200},
+//	{11'd250, 11'd250},
+//	{11'd300, 11'd150},
+//	{11'd300, 11'd200},
+//	{11'd300, 11'd250}
+//};
 
 
 
 //For loop to create 12 Number instances 
+
+parameter int topLeftX = 150;
+parameter int topLeftY = 100;
+parameter int xDiff = 50;
+parameter int yDiff = 50;
+
+
 genvar i;
 
 generate
 
 	for (i = 0; i < 12; i = i + 1) begin : NUMBER_DISPLAY_GENERATION
-	
+		
 		NUMBER_DISPLAY number (
 										.clk(clk),
 										.resetN(resetN),
@@ -61,8 +87,8 @@ generate
 										.pixelX(pixelX),
 										.pixelY(pixelY),
 										.KeyPad(4'b0000), 
-										.topLeftX(positions[i][21:11]),
-										.topLeftY(positions[i][11:0]),
+										.topLeftX(topLeftX + (xDiff * (i / 4))),
+										.topLeftY(topLeftY + (yDiff * (i % 4))),
 										.numDR(numbersDR[i]),
 										.numRGB(numbersRGB[i])
 									 );

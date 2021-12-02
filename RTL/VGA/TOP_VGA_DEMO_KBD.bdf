@@ -903,7 +903,7 @@ agreement for further details.
 (symbol
 	(rect -72 1080 176 1224)
 	(text "MULTIPLE_NUMBERS_DISPLAY" (rect 5 0 170 12)(font "Arial" ))
-	(text "inst26" (rect 8 128 36 145)(font "Intel Clear" ))
+	(text "inst27" (rect 8 128 36 145)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -960,9 +960,30 @@ agreement for further details.
 		(text "numbersRGB[11..0][7..0]" (rect 123 59 246 71)(font "Arial" ))
 		(line (pt 248 64)(pt 232 64)(line_width 3))
 	)
+	(parameter
+		"topLeftX"
+		"150"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"topLeftY"
+		"100"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"xDiff"
+		"50"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"yDiff"
+		"50"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 232 128))
 	)
+	(annotation_block (parameter)(rect 176 984 352 1080))
 )
 (connector
 	(pt 64 104)
@@ -1338,33 +1359,6 @@ agreement for further details.
 	(pt 528 264)
 )
 (connector
-	(text "clk" (rect -110 1096 -96 1113)(font "Intel Clear" ))
-	(pt -72 1112)
-	(pt -120 1112)
-)
-(connector
-	(text "resetN" (rect -110 1112 -80 1129)(font "Intel Clear" ))
-	(pt -72 1128)
-	(pt -120 1128)
-)
-(connector
-	(text "pixelX[10..0]" (rect -120 1128 -61 1145)(font "Intel Clear" ))
-	(pt -72 1144)
-	(pt -120 1144)
-	(bus)
-)
-(connector
-	(text "pixelY[10..0]" (rect -120 1144 -61 1161)(font "Intel Clear" ))
-	(pt -72 1160)
-	(pt -120 1160)
-	(bus)
-)
-(connector
-	(text "singleHit" (rect -120 1160 -79 1177)(font "Intel Clear" ))
-	(pt -72 1176)
-	(pt -120 1176)
-)
-(connector
 	(text "anyNumDR" (rect 434 456 488 473)(font "Intel Clear" ))
 	(pt 544 472)
 	(pt 424 472)
@@ -1458,6 +1452,33 @@ agreement for further details.
 	(pt 544 504)
 	(pt 424 504)
 	(bus)
+)
+(connector
+	(text "clk" (rect -174 1096 -160 1113)(font "Intel Clear" ))
+	(pt -72 1112)
+	(pt -184 1112)
+)
+(connector
+	(text "resetN" (rect -174 1112 -144 1129)(font "Intel Clear" ))
+	(pt -72 1128)
+	(pt -184 1128)
+)
+(connector
+	(text "pixelX[10..0]" (rect -184 1128 -125 1145)(font "Intel Clear" ))
+	(pt -72 1144)
+	(pt -184 1144)
+	(bus)
+)
+(connector
+	(text "pixelY[10..0]" (rect -184 1144 -125 1161)(font "Intel Clear" ))
+	(pt -72 1160)
+	(pt -184 1160)
+	(bus)
+)
+(connector
+	(text "singleHit" (rect -184 1160 -143 1177)(font "Intel Clear" ))
+	(pt -72 1176)
+	(pt -184 1176)
 )
 (junction (pt 552 944))
 (text "Sound Unit" (rect 496 784 562 803)(font "Intel Clear" (font_size 8)))
