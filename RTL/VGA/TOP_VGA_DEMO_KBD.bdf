@@ -743,7 +743,7 @@ agreement for further details.
 	(annotation_block (parameter)(rect 848 -40 1048 56))
 )
 (symbol
-	(rect 536 584 944 760)
+	(rect 536 560 944 736)
 	(text "game_controller" (rect 5 0 82 12)(font "Arial" ))
 	(text "inst40" (rect 8 160 36 177)(font "Intel Clear" ))
 	(port
@@ -831,7 +831,7 @@ agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 392 160))
 	)
-	(annotation_block (parameter)(rect 944 544 1137 582))
+	(annotation_block (parameter)(rect 944 520 1137 558))
 )
 (symbol
 	(rect -72 1072 280 1216)
@@ -1313,36 +1313,6 @@ agreement for further details.
 	(pt 528 264)
 )
 (connector
-	(text "clk" (rect 464 600 478 617)(font "Intel Clear" ))
-	(pt 416 616)
-	(pt 536 616)
-)
-(connector
-	(text "resetN" (rect 456 616 489 628)(font "Arial" ))
-	(pt 416 632)
-	(pt 536 632)
-)
-(connector
-	(text "startOfFrame" (rect 432 632 495 649)(font "Intel Clear" ))
-	(pt 416 648)
-	(pt 536 648)
-)
-(connector
-	(text "boardersDrawReq" (rect 432 664 516 681)(font "Intel Clear" ))
-	(pt 416 680)
-	(pt 536 680)
-)
-(connector
-	(text "monkeyDR" (rect 442 648 495 665)(font "Intel Clear" ))
-	(pt 416 664)
-	(pt 536 664)
-)
-(connector
-	(text "ropesDrawingRequest" (rect 426 696 529 713)(font "Intel Clear" ))
-	(pt 536 712)
-	(pt 416 712)
-)
-(connector
 	(text "clk" (rect -174 1088 -160 1105)(font "Intel Clear" ))
 	(pt -72 1104)
 	(pt -184 1104)
@@ -1362,27 +1332,6 @@ agreement for further details.
 	(text "pixelY[10..0]" (rect -184 1136 -125 1153)(font "Intel Clear" ))
 	(pt -72 1152)
 	(pt -184 1152)
-	(bus)
-)
-(connector
-	(text "ropeCollision" (rect 954 600 1016 617)(font "Intel Clear" ))
-	(pt 944 616)
-	(pt 1040 616)
-)
-(connector
-	(text "collision" (rect 968 616 1006 633)(font "Intel Clear" ))
-	(pt 944 632)
-	(pt 1040 632)
-)
-(connector
-	(text "num_hit" (rect 954 648 992 665)(font "Intel Clear" ))
-	(pt 944 664)
-	(pt 1040 664)
-)
-(connector
-	(text "SingleHitPulse[NUMBERS-1..0]" (rect 944 632 1091 649)(font "Intel Clear" ))
-	(pt 944 648)
-	(pt 1040 648)
 	(bus)
 )
 (connector
@@ -1487,15 +1436,66 @@ agreement for further details.
 	(bus)
 )
 (connector
-	(text "numbersDR[NUMBERS-1..0]" (rect 426 680 559 697)(font "Intel Clear" ))
-	(pt 536 696)
-	(pt 416 696)
-	(bus)
-)
-(connector
 	(text "numbersRGB[NUMBERS-1..0][7..0]" (rect 426 472 590 489)(font "Intel Clear" ))
 	(pt 536 488)
 	(pt 416 488)
+	(bus)
+)
+(connector
+	(text "clk" (rect 464 576 478 593)(font "Intel Clear" ))
+	(pt 416 592)
+	(pt 536 592)
+)
+(connector
+	(text "resetN" (rect 456 592 489 604)(font "Arial" ))
+	(pt 416 608)
+	(pt 536 608)
+)
+(connector
+	(text "startOfFrame" (rect 432 608 495 625)(font "Intel Clear" ))
+	(pt 416 624)
+	(pt 536 624)
+)
+(connector
+	(text "boardersDrawReq" (rect 432 640 516 657)(font "Intel Clear" ))
+	(pt 416 656)
+	(pt 536 656)
+)
+(connector
+	(text "monkeyDR" (rect 442 624 495 641)(font "Intel Clear" ))
+	(pt 416 640)
+	(pt 536 640)
+)
+(connector
+	(text "ropesDrawingRequest" (rect 426 672 529 689)(font "Intel Clear" ))
+	(pt 536 688)
+	(pt 416 688)
+)
+(connector
+	(text "ropeCollision" (rect 954 576 1016 593)(font "Intel Clear" ))
+	(pt 944 592)
+	(pt 1040 592)
+)
+(connector
+	(text "collision" (rect 968 592 1006 609)(font "Intel Clear" ))
+	(pt 944 608)
+	(pt 1040 608)
+)
+(connector
+	(text "num_hit" (rect 954 624 992 641)(font "Intel Clear" ))
+	(pt 944 640)
+	(pt 1040 640)
+)
+(connector
+	(text "SingleHitPulse[NUMBERS-1..0]" (rect 944 608 1091 625)(font "Intel Clear" ))
+	(pt 944 624)
+	(pt 1040 624)
+	(bus)
+)
+(connector
+	(text "numbersDR[NUMBERS-1..0]" (rect 426 656 559 673)(font "Intel Clear" ))
+	(pt 536 672)
+	(pt 416 672)
 	(bus)
 )
 (junction (pt 552 944))

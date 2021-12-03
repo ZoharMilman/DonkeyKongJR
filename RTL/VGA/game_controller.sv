@@ -21,10 +21,10 @@ module	game_controller	(
 			output logic num_hit
 );
 
-// drawing_request_Monkey   -->  monkey
+// drawing_request_Monkey   		-->  monkey
 // drawing_request_Brackets      -->  brackets
-// drawing_request_Numbers      -->  number
-// drawing_request_Rope      -->  rope
+// drawing_request_Numbers       -->  number
+// drawing_request_Rope      		-->  rope
 
 
 parameter int NUMBERS = 3; 

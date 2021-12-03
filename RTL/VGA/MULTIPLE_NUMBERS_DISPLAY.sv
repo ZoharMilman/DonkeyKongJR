@@ -58,8 +58,8 @@ always_ff@(posedge clk or negedge resetN) begin
 	else begin
 			
 		for (j = 0; j < NUMBERS; j = j + 1) begin
-			showNum[j] <= 1'b1;
-			if (singleHit[j]) showNum <= 1'b0;
+			if (singleHit[j]) showNum[j] <= 1'b0;
+			else if (showNum[j]) showNum[j] <= 1'b1;
 		end
 		
 	end
