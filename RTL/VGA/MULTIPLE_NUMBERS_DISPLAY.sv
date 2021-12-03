@@ -24,8 +24,6 @@ module MULTIPLE_NUMBERS_DISPLAY (
 
 
 
-//TODO add support for random number generation
-
 int j;
 
 parameter int topLeftX = 150;
@@ -41,7 +39,41 @@ parameter int NUMBERS = 3;
 
 
 
-//Creating hit flags 
+//"Random" number support. 
+//We have set positions and set numbers, we want to randomize each number's position in the fixed positions. 
+
+
+parameter logic [NUMBERS-1:0][3:0] possible_numbers = {4'b0000, 4'b1000, 4'b0000};
+
+//Helper variables
+
+
+logic [NUMBERS-1:0][3:0] numbers_randomized; 
+logic rise; 
+logic [3:0] dout;
+
+random #(.SIZE_BITS(4), 
+			.MIN_VAL(0), 
+			.MAX_VAL(NUMBERS-1)
+			) random_gen (.clk(clk), 
+							  .resetN(resetN),
+							  .rise(rise),
+							  .dout(dout)); 
+			
+always_ff@(posedge clk or negedge resetN) begin
+	if (!resetN) begin 
+		for (j = 0; j < NUMBERS; j = j + 1) begin
+		//Rise rise to get a new random number
+			rise <= 1'b1; 
+			numbers_randomized[j] <= possible_numbers[dout]; 
+			rise <= 1'b0;
+		end
+	end
+	
+end
+
+
+//Creating hit flags for the disappearing numbers. 
 
 logic [NUMBERS-1:0] showNum; 
 
@@ -79,7 +111,7 @@ generate
 										.singleHit(singleHit),
 										.pixelX(pixelX),
 										.pixelY(pixelY),
-										.KeyPad(4'b0000), 
+										.KeyPad(numbers_randomized[i]), 
 										.topLeftX(topLeftX + (xDiff * (i / collums))), //TODO for some reason verilog refuses to treat my boy NUM_AMOUNT_Y as an int so i inputed this as a hard coded number. 
 										.topLeftY(topLeftY + (yDiff * (i % collums))),
 										.show(showNum[i]),

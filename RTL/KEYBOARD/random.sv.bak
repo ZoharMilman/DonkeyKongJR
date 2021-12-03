@@ -4,7 +4,6 @@ module random
 	input	logic  clk,
 	input	logic  resetN, 
 	input	logic	 rise,
-	
 	output logic unsigned [SIZE_BITS-1:0] dout	
   ) ;
 

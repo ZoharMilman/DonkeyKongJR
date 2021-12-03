@@ -28,7 +28,7 @@ agreement for further details.
 	(text " NAME" (rect 107 0 141 12)(font "Arial" ))
 	(text "NUMBERS" (rect 4 16 61 30)(font "Arial" (font_size 8)))
 	(text " VALUE" (rect 139 0 177 12)(font "Arial" ))
-	(text "D\"6\"" (rect 140 16 147 30)(font "Arial" (font_size 8)))
+	(text "D\"3\"" (rect 140 16 147 30)(font "Arial" (font_size 8)))
 	(drawing
 		(line (pt 138 40)(pt 138 0))
 	)
@@ -834,99 +834,6 @@ agreement for further details.
 	(annotation_block (parameter)(rect 944 520 1137 558))
 )
 (symbol
-	(rect -72 1072 280 1216)
-	(text "MULTIPLE_NUMBERS_DISPLAY" (rect 5 0 170 12)(font "Arial" ))
-	(text "inst46" (rect 8 128 36 145)(font "Intel Clear" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "clk" (rect 0 0 14 12)(font "Arial" ))
-		(text "clk" (rect 21 27 35 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "resetN" (rect 0 0 33 12)(font "Arial" ))
-		(text "resetN" (rect 21 43 54 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48))
-	)
-	(port
-		(pt 0 64)
-		(input)
-		(text "pixelX[10..0]" (rect 0 0 60 12)(font "Arial" ))
-		(text "pixelX[10..0]" (rect 21 59 81 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 3))
-	)
-	(port
-		(pt 0 80)
-		(input)
-		(text "pixelY[10..0]" (rect 0 0 62 12)(font "Arial" ))
-		(text "pixelY[10..0]" (rect 21 75 83 87)(font "Arial" ))
-		(line (pt 0 80)(pt 16 80)(line_width 3))
-	)
-	(port
-		(pt 0 96)
-		(input)
-		(text "singleHit[NUMBERS-1..0]" (rect 0 0 126 12)(font "Arial" ))
-		(text "singleHit[NUMBERS-1..0]" (rect 21 91 147 103)(font "Arial" ))
-		(line (pt 0 96)(pt 16 96)(line_width 3))
-	)
-	(port
-		(pt 352 32)
-		(output)
-		(text "numbersDR[NUMBERS-1..0]" (rect 0 0 142 12)(font "Arial" ))
-		(text "numbersDR[NUMBERS-1..0]" (rect 211 27 353 39)(font "Arial" ))
-		(line (pt 352 32)(pt 336 32)(line_width 3))
-	)
-	(port
-		(pt 352 48)
-		(output)
-		(text "numbersRGB[NUMBERS-1..0][7..0]" (rect 0 0 175 12)(font "Arial" ))
-		(text "numbersRGB[NUMBERS-1..0][7..0]" (rect 183 43 358 55)(font "Arial" ))
-		(line (pt 352 48)(pt 336 48)(line_width 3))
-	)
-	(parameter
-		"topLeftX"
-		"150"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"topLeftY"
-		"100"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"xDiff"
-		"50"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"yDiff"
-		"100"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"NUM_AMOUNT_X"
-		"2"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"NUM_AMOUNT_Y"
-		"3"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"NUMBERS"
-		"NUMBERS"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 336 128))
-	)
-	(annotation_block (parameter)(rect -440 1040 -209 1192))
-)
-(symbol
 	(rect 536 376 840 584)
 	(text "objects_mux" (rect 5 0 67 12)(font "Arial" ))
 	(text "inst44" (rect 8 192 36 209)(font "Intel Clear" ))
@@ -1009,6 +916,104 @@ agreement for further details.
 		(rectangle (rect 16 16 288 192))
 	)
 	(annotation_block (parameter)(rect 840 336 1033 374))
+)
+(symbol
+	(rect -72 1072 280 1216)
+	(text "MULTIPLE_NUMBERS_DISPLAY" (rect 5 0 170 12)(font "Arial" ))
+	(text "inst2" (rect 8 128 30 145)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 27 35 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "resetN" (rect 0 0 33 12)(font "Arial" ))
+		(text "resetN" (rect 21 43 54 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "pixelX[10..0]" (rect 0 0 60 12)(font "Arial" ))
+		(text "pixelX[10..0]" (rect 21 59 81 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "pixelY[10..0]" (rect 0 0 62 12)(font "Arial" ))
+		(text "pixelY[10..0]" (rect 21 75 83 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "singleHit[NUMBERS-1..0]" (rect 0 0 126 12)(font "Arial" ))
+		(text "singleHit[NUMBERS-1..0]" (rect 21 91 147 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
+	)
+	(port
+		(pt 352 32)
+		(output)
+		(text "numbersDR[NUMBERS-1..0]" (rect 0 0 142 12)(font "Arial" ))
+		(text "numbersDR[NUMBERS-1..0]" (rect 211 27 353 39)(font "Arial" ))
+		(line (pt 352 32)(pt 336 32)(line_width 3))
+	)
+	(port
+		(pt 352 48)
+		(output)
+		(text "numbersRGB[NUMBERS-1..0][7..0]" (rect 0 0 175 12)(font "Arial" ))
+		(text "numbersRGB[NUMBERS-1..0][7..0]" (rect 183 43 358 55)(font "Arial" ))
+		(line (pt 352 48)(pt 336 48)(line_width 3))
+	)
+	(parameter
+		"topLeftX"
+		"150"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"topLeftY"
+		"100"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"xDiff"
+		"50"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"yDiff"
+		"100"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"NUM_AMOUNT_X"
+		"1"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"NUM_AMOUNT_Y"
+		"3"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"NUMBERS"
+		"3"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"possible_numbers"
+		"A(1111,0010,1000)"
+		""
+		(type "PARAMETER_UNKNOWN")	)
+	(drawing
+		(rectangle (rect 16 16 336 128))
+	)
+	(annotation_block (parameter)(rect -512 1016 -225 1187))
 )
 (connector
 	(pt 64 104)
