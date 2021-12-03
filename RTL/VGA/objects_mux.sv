@@ -15,10 +15,9 @@ module	objects_mux	(
 					input		logic	monkeyDrawingRequest, // two set of inputs per unit
 					input		logic	[7:0] monkeyRGB, 
 					     
-		  // numbers 
-					input		logic anyNumDR,
-					input 	logic [11:0] numbersDR,
-					input		logic [11:0] [7:0] numbersRGB,
+		  // numbers
+					input 	logic [NUMBERS-1:0] numbersDR,
+					input		logic [NUMBERS-1:0] [7:0] numbersRGB,
 					
 					
 		  // background 
@@ -29,6 +28,9 @@ module	objects_mux	(
 				   output	logic	[7:0] RGBOut
 );
 
+
+
+parameter int NUMBERS = 3; 
 
 int i; 
 
@@ -49,8 +51,8 @@ begin
 //						RGBOut <= rec_RGB;
 				
 				//Check for every number if it has a drawing request
-				else if (anyNumDR) begin
-					for (i = 0; i < 12; i = i + 1) begin
+				else if (numbersDR) begin
+					for (i = 0; i < NUMBERS; i = i + 1) begin
 				
 							if (numbersDR[i]) 
 								RGBOut <= numbersRGB[i];

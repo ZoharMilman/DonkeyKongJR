@@ -9,27 +9,33 @@ module	game_controller	(
 			input	logic	resetN,
 			input	logic	startOfFrame,   // short pulse every start of frame 30Hz 
 			input	logic	drawing_request_Monkey,
-			input	logic	drawing_request_1,
-			input logic drawing_request_2,
-			input logic drawing_request_3, 
+			input	logic	drawing_request_Brackets,
+			input logic [NUMBERS-1:0] drawing_request_Numbers,
+			input logic drawing_request_Rope, 
+			
+			
 			
 			output logic ropeCollision,  // active in case of collision between the monkey and a rope
 			output logic collision, 	 // active in case of collision between two objects
-			output logic SingleHitPulse, // critical code, generating A single pulse in a frame 
+			output logic [NUMBERS-1:0] SingleHitPulse, // critical code, generating A single pulse in a frame 
 			output logic num_hit
 );
 
-// drawing_request_Ball   -->  monkey
-// drawing_request_1      -->  brackets
-// drawing_request_2      -->  number
-// drawing_request_3      -->  rope
+// drawing_request_Monkey   -->  monkey
+// drawing_request_Brackets      -->  brackets
+// drawing_request_Numbers      -->  number
+// drawing_request_Rope      -->  rope
 
 
-assign collision = ( (drawing_request_Monkey &&  drawing_request_1) || (drawing_request_Monkey &&  drawing_request_2) 
-						|| (drawing_request_Monkey &&  drawing_request_3));// any collision 
+parameter int NUMBERS = 3; 
+
+int i;
+
+assign collision = ( (drawing_request_Monkey &&  drawing_request_Brackets) || (drawing_request_Monkey &&  drawing_request_Numbers) 
+						|| (drawing_request_Monkey &&  drawing_request_Rope));// any collision 
 						 						
-assign ropeCollision = (drawing_request_Monkey && drawing_request_3);
-assign num_hit = (drawing_request_Monkey && drawing_request_2);
+assign ropeCollision = (drawing_request_Monkey && drawing_request_Rope);
+assign num_hit = (drawing_request_Monkey && drawing_request_Numbers);
 
 logic flag ; // a semaphore to set the output only once per frame / regardless of the number of collisions 
 
@@ -38,18 +44,27 @@ begin
 	if(!resetN)
 	begin 
 		flag	<= 1'b0;
-		SingleHitPulse <= 1'b0 ; 
+		for (i = 0; i < NUMBERS; i = i + 1) begin 
+			SingleHitPulse[i] <= 1'b0; 
+		end
+		
 	end 
 	else begin 
-			SingleHitPulse <= 1'b0 ; // default 
+			for (i = 0; i < NUMBERS; i = i + 1) begin 
+				SingleHitPulse[i] <= 1'b0; 
+			end
+
 			if(startOfFrame) 
-				flag = 1'b0 ; // reset for next time 
+				flag <= 1'b0 ; // reset for next time 
 						
 //Handling hitting a number
-if ( collision  && (flag == 1'b0) && drawing_request_2) begin 
-			flag	<= 1'b1; // to enter only once 
-			SingleHitPulse <= 1'b1 ; 
-		end ; 
+
+			for (i = 0; i < NUMBERS; i = i + 1) begin 
+				if ( collision  && (flag == 1'b0) && drawing_request_Numbers[i]) begin 
+					flag	<= 1'b1; // to enter only once 
+					SingleHitPulse[i] <= 1'b1 ; 
+				end 
+			end
 	end 
 end
 

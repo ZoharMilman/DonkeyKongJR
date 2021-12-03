@@ -13,12 +13,12 @@ module MULTIPLE_NUMBERS_DISPLAY (
 			
 			
 			//Collision inputs
-			input logic singleHit,
+			input logic [NUMBERS-1:0] singleHit,
 			
 			//We have a drawing request and rgbout for each of the 12 numbers
-			output logic [11:0] numbersDR, //output that the pixel should be dispalyed 
-			output logic anyNumDR,					//An output to be set to 1 when there is a number drawing request
-			output logic [11:0] [7:0] numbersRGB
+			output logic [NUMBERS-1:0] numbersDR, //output that the pixel should be dispalyed 
+//			output logic anyNumDR,					//An output to be set to 1 when there is a number drawing request
+			output logic [NUMBERS-1:0] [7:0] numbersRGB
 			
 );
 
@@ -26,59 +26,52 @@ module MULTIPLE_NUMBERS_DISPLAY (
 
 //TODO add support for random number generation
 
-
-
-
-//An array that contains for each number its location. 
-
-
-
-//logic [0:11] [0:1] [0:11] positions = 
-//{
-//	{11'd150, 11'd150},
-//	{11'd150, 11'd200},
-//	{11'd150, 11'd250},
-//	{11'd200, 11'd150},
-//	{11'd200, 11'd200},
-//	{11'd200, 11'd250},
-//	{11'd250, 11'd150},
-//	{11'd250, 11'd200},
-//	{11'd250, 11'd250},
-//	{11'd300, 11'd150},
-//	{11'd300, 11'd200},
-//	{11'd300, 11'd250}
-//};
-
-//logic [0:1] [0:11] [0:11] positions = {
-//	{11'd150, 11'd150},
-//	{11'd150, 11'd200},
-//	{11'd150, 11'd250},
-//	{11'd200, 11'd150},
-//	{11'd200, 11'd200},
-//	{11'd200, 11'd250},
-//	{11'd250, 11'd150},
-//	{11'd250, 11'd200},
-//	{11'd250, 11'd250},
-//	{11'd300, 11'd150},
-//	{11'd300, 11'd200},
-//	{11'd300, 11'd250}
-//};
-
-
-
-//For loop to create 12 Number instances 
+int j;
 
 parameter int topLeftX = 150;
 parameter int topLeftY = 100;
 parameter int xDiff = 50;
-parameter int yDiff = 50;
+parameter int yDiff = 100;
+
+parameter int NUM_AMOUNT_X = 1; 
+parameter int NUM_AMOUNT_Y = 3;
+localparam int collums = NUM_AMOUNT_Y;
+
+parameter int NUMBERS = 3;
+
+
+
+//Creating hit flags 
+
+logic [NUMBERS-1:0] showNum; 
+
+always_ff@(posedge clk or negedge resetN) begin
+
+	if (!resetN) begin
+	
+		for (j = 0; j < NUMBERS; j = j + 1) begin
+			showNum[j] <= 1'b1;
+		end
+		
+	end
+	
+	else begin
+			
+		for (j = 0; j < NUMBERS; j = j + 1) begin
+			showNum[j] <= 1'b1;
+			if (singleHit[j]) showNum <= 1'b0;
+		end
+		
+	end
+end
+
 
 
 genvar i;
 
 generate
 
-	for (i = 0; i < 12; i = i + 1) begin : NUMBER_DISPLAY_GENERATION
+	for (i = 0; i < NUMBERS; i = i + 1) begin : NUMBER_DISPLAY_GENERATION
 		
 		NUMBER_DISPLAY number (
 										.clk(clk),
@@ -87,18 +80,15 @@ generate
 										.pixelX(pixelX),
 										.pixelY(pixelY),
 										.KeyPad(4'b0000), 
-										.topLeftX(topLeftX + (xDiff * (i / 4))),
-										.topLeftY(topLeftY + (yDiff * (i % 4))),
+										.topLeftX(topLeftX + (xDiff * (i / collums))), //TODO for some reason verilog refuses to treat my boy NUM_AMOUNT_Y as an int so i inputed this as a hard coded number. 
+										.topLeftY(topLeftY + (yDiff * (i % collums))),
+										.show(showNum[i]),
 										.numDR(numbersDR[i]),
 										.numRGB(numbersRGB[i])
 									 );
 									 
 	end
 endgenerate 
-
-assign anyNumDR = (numbersDR[0] || numbersDR[1] || numbersDR[2] || numbersDR[3] || numbersDR[4]
-					 || numbersDR[5] || numbersDR[6] || numbersDR[7] || numbersDR[8] || numbersDR[9]
-					 || numbersDR[10] || numbersDR[11]);
 
 
 endmodule  
