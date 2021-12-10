@@ -23,6 +23,10 @@ module	objects_mux	(
 					input    logic [1:0] operandDR,
 					input    logic [1:0] [7:0] operandRGB,
 					
+		  // scoreboard
+					input    logic [2:0] scoreboardDR,
+					input    logic [2:0] [7:0] scoreboardRGB,
+					
 					
 		  // background 
 					input    logic ropesDrawingRequest, // box of numbers
@@ -48,12 +52,18 @@ begin
 	else begin
 		if (monkeyDrawingRequest == 1'b1 )   
 			RGBOut <= monkeyRGB;  //first priority 
-			
-			
-		 
-//				else if ( rec_DR == 1'b1 )
-//						RGBOut <= rec_RGB;
 				
+				//Scoreboard drawing
+				else if (scoreboardDR) begin
+					for (i = 0; i < 3; i = i + 1) begin
+				
+							if (scoreboardDR[i]) 
+								RGBOut <= scoreboardRGB[i];
+							
+						  end
+				end
+				
+
 				//Check for every number if it has a drawing request
 				else if (numbersDR) begin
 					for (i = 0; i < NUMBERS; i = i + 1) begin
@@ -64,12 +74,13 @@ begin
 						  end
 				end
 				
+				//Operand drawing
 				else if (operandDR) begin
 						if (operandDR[0]) 	RGBOut <= operandRGB[0];
 						else if (operandDR[1]) RGBOut <= operandRGB[1];
 				end
 				
-				
+				//Rope drawing
 				else if (ropesDrawingRequest == 1'b1)
 						RGBOut <= ropesRGB;
 						else 

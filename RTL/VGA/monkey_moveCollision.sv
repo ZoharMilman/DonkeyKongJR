@@ -34,8 +34,7 @@ module	monkey_moveCollision	(
 logic onLedge;
 assign onLedge = (HitEdgeCode & collision & !objectHit);
 logic footing;
-assign footing = (onRope | onLedge);
-logic double_jump; 
+assign footing = (onRope | onLedge); 
 
 // a module used to generate the  ball trajectory.  
 
@@ -71,7 +70,6 @@ begin
 		Yspeed	<= INITIAL_Y_SPEED;
 		topLeftY_FixedPoint	<= INITIAL_Y * FIXED_POINT_MULTIPLIER;
 		Y_ACCEL <= 0;
-		double_jump <= 1'b1;
 	end 
 	else begin
 		
@@ -79,14 +77,9 @@ begin
 		Y_ACCEL <= 0;
 		if (!footing) begin
 			Y_ACCEL <= -10;
-			if (upPressed && double_jump) begin 
-				Yspeed <= -300;
-				double_jump <= 1'b0;
-			end
 		end
 		
-		if (footing) begin 
-			double_jump <= 1'b1;
+		if  (footing) begin 
 			Yspeed <= 0;
 			if (upPressed) begin 
 				//Rope Climbing
