@@ -197,6 +197,22 @@ agreement for further details.
 		(line (pt 78 12)(pt 82 8))
 	)
 )
+(pin
+	(output)
+	(rect 1272 936 1448 952)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "zeroPressed" (rect 90 0 147 17)(font "Intel Clear" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
 (symbol
 	(rect 360 416 560 560)
 	(text "keyPad_decoder" (rect 5 0 87 12)(font "Arial" ))
@@ -591,6 +607,76 @@ agreement for further details.
 	)
 	(annotation_block (parameter)(rect 1224 656 1446 694))
 )
+(symbol
+	(rect 944 888 1184 1032)
+	(text "keyToggle_decoder" (rect 5 0 100 12)(font "Arial" ))
+	(text "inst6" (rect 8 128 30 145)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 27 35 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "resetN" (rect 0 0 33 12)(font "Arial" ))
+		(text "resetN" (rect 21 43 54 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "keyCode[8..0]" (rect 0 0 70 12)(font "Arial" ))
+		(text "keyCode[8..0]" (rect 21 59 91 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "make" (rect 0 0 27 12)(font "Arial" ))
+		(text "make" (rect 21 75 48 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "brakee" (rect 0 0 33 12)(font "Arial" ))
+		(text "brakee" (rect 21 91 54 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96))
+	)
+	(port
+		(pt 240 32)
+		(output)
+		(text "keyLatch" (rect 0 0 46 12)(font "Arial" ))
+		(text "keyLatch" (rect 181 27 227 39)(font "Arial" ))
+		(line (pt 240 32)(pt 224 32))
+	)
+	(port
+		(pt 240 48)
+		(output)
+		(text "keyRisingEdgePulse" (rect 0 0 101 12)(font "Arial" ))
+		(text "keyRisingEdgePulse" (rect 134 43 235 55)(font "Arial" ))
+		(line (pt 240 48)(pt 224 48))
+	)
+	(port
+		(pt 240 64)
+		(output)
+		(text "keyIsPressed" (rect 0 0 68 12)(font "Arial" ))
+		(text "keyIsPressed" (rect 162 59 230 71)(font "Arial" ))
+		(line (pt 240 64)(pt 224 64))
+	)
+	(parameter
+		"KEY_VALUE"
+		"001110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(drawing
+		(rectangle (rect 16 16 224 128))
+	)
+	(annotation_block (parameter)(rect 1224 848 1446 886))
+)
 (connector
 	(text "clk" (rect 335 432 349 449)(font "Intel Clear" ))
 	(pt 312 448)
@@ -825,6 +911,44 @@ agreement for further details.
 	(pt 1192 752)
 	(pt 1272 752)
 )
+(connector
+	(text "clk" (rect 927 904 941 921)(font "Intel Clear" ))
+	(pt 904 920)
+	(pt 944 920)
+)
+(connector
+	(text "resetN" (rect 914 920 944 937)(font "Intel Clear" ))
+	(pt 904 936)
+	(pt 944 936)
+)
+(connector
+	(text "keyCode[8..0]" (rect 856 936 922 953)(font "Intel Clear" ))
+	(pt 840 952)
+	(pt 944 952)
+	(bus)
+)
+(connector
+	(text "make" (rect 890 952 917 969)(font "Intel Clear" ))
+	(pt 840 968)
+	(pt 944 968)
+)
+(connector
+	(text "brake" (rect 891 968 918 985)(font "Intel Clear" ))
+	(pt 840 984)
+	(pt 944 984)
+)
+(connector
+	(pt 1184 952)
+	(pt 1192 952)
+)
+(connector
+	(pt 1192 952)
+	(pt 1192 944)
+)
+(connector
+	(pt 1192 944)
+	(pt 1272 944)
+)
 (text "\r//Updated By Eyal Lev Feb 2021" (rect 112 43 312 62)(font "Intel Clear" (font_size 8)))
 (text "// (c) Technion IIT, Department of Electrical Engineering 2021\r\n// Written By Alex Grinshpun David Bar-On  Feb  2019  \r" (rect 112 -8 471 30)(font "Intel Clear" (font_size 8)))
 (text "RIGHT_KEY = 9'h074" (rect 968 256 1095 275)(font "Intel Clear" (font_size 8)))
@@ -841,3 +965,8 @@ agreement for further details.
 (text "keyCode[8..0]" (rect 856 744 922 761)(font "Intel Clear" ))
 (text "make" (rect 890 760 917 777)(font "Intel Clear" ))
 (text "brake" (rect 891 776 918 793)(font "Intel Clear" ))
+(text "clk" (rect 927 904 941 921)(font "Intel Clear" ))
+(text "resetN" (rect 914 920 944 937)(font "Intel Clear" ))
+(text "keyCode[8..0]" (rect 856 936 922 953)(font "Intel Clear" ))
+(text "make" (rect 890 952 917 969)(font "Intel Clear" ))
+(text "brake" (rect 891 968 918 985)(font "Intel Clear" ))

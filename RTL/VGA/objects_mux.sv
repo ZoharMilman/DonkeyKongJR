@@ -19,6 +19,10 @@ module	objects_mux	(
 					input 	logic [NUMBERS-1:0] numbersDR,
 					input		logic [NUMBERS-1:0] [7:0] numbersRGB,
 					
+		  // operand
+					input    logic [1:0] operandDR,
+					input    logic [1:0] [7:0] operandRGB,
+					
 					
 		  // background 
 					input    logic ropesDrawingRequest, // box of numbers
@@ -58,6 +62,11 @@ begin
 								RGBOut <= numbersRGB[i];
 							
 						  end
+				end
+				
+				else if (operandDR) begin
+						if (operandDR[0]) 	RGBOut <= operandRGB[0];
+						else if (operandDR[1]) RGBOut <= operandRGB[1];
 				end
 				
 				

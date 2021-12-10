@@ -248,7 +248,7 @@ agreement for further details.
 	(input)
 	(rect 80 600 248 616)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "num_hit" (rect 5 0 44 12)(font "Arial" ))
+	(text "objectHit" (rect 5 0 49 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -520,8 +520,8 @@ agreement for further details.
 	(port
 		(pt 0 176)
 		(input)
-		(text "num_hit" (rect 0 0 38 12)(font "Arial" ))
-		(text "num_hit" (rect 21 171 59 183)(font "Arial" ))
+		(text "objectHit" (rect 0 0 43 12)(font "Arial" ))
+		(text "objectHit" (rect 21 171 64 183)(font "Arial" ))
 		(line (pt 0 176)(pt 16 176))
 	)
 	(port
@@ -567,13 +567,13 @@ agreement for further details.
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MAX_Y_SPEED"
-		"230"
+		"300"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 216 224))
 	)
-	(annotation_block (parameter)(rect 848 312 1056 432))
+	(annotation_block (parameter)(rect 848 312 1056 426))
 )
 (connector
 	(text "pixelY[10..0]" (rect 338 392 397 409)(font "Intel Clear" ))
@@ -673,18 +673,6 @@ agreement for further details.
 	(text "smileyRecDR" (rect 1264 416 1327 433)(font "Intel Clear" ))
 	(pt 1160 432)
 	(pt 1352 432)
-)
-(connector
-	(text "SmileyTLY[10..0]" (rect 842 464 923 481)(font "Intel Clear" ))
-	(pt 936 480)
-	(pt 848 480)
-	(bus)
-)
-(connector
-	(text "SmileyTLX[10..0]" (rect 844 448 925 465)(font "Intel Clear" ))
-	(pt 936 464)
-	(pt 848 464)
-	(bus)
 )
 (connector
 	(text "HitEdgeCode[3..0]" (rect 917 704 1001 721)(font "Intel Clear" ))
@@ -800,7 +788,19 @@ agreement for further details.
 	(pt 616 576)
 )
 (connector
-	(text "num_hit" (rect 258 592 296 609)(font "Intel Clear" ))
+	(text "SmileyTLX[10..0]" (rect 844 448 925 465)(font "Intel Clear" ))
+	(pt 848 464)
+	(pt 936 464)
+	(bus)
+)
+(connector
+	(text "SmileyTLY[10..0]" (rect 842 464 923 481)(font "Intel Clear" ))
+	(pt 848 480)
+	(pt 936 480)
+	(bus)
+)
+(connector
+	(text "objectHit" (rect 258 592 299 609)(font "Intel Clear" ))
 	(pt 248 608)
 	(pt 616 608)
 )

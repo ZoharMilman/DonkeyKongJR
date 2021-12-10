@@ -23,7 +23,7 @@ module	monkey_moveCollision	(
 					//Collision related inputs
 					input logic collision,
 					input logic onRope,
-					input logic num_hit,  
+					input logic objectHit,  
 					input	logic	[3:0] HitEdgeCode, //one bit per edge 
 
 					output	 logic signed 	[10:0]	topLeftX, // output the top left corner 
@@ -32,9 +32,10 @@ module	monkey_moveCollision	(
 );
 
 logic onLedge;
-assign onLedge = (HitEdgeCode & collision & !num_hit);
+assign onLedge = (HitEdgeCode & collision & !objectHit);
 logic footing;
-assign footing = (onRope | onLedge); 
+assign footing = (onRope | onLedge);
+logic double_jump; 
 
 // a module used to generate the  ball trajectory.  
 
@@ -70,6 +71,7 @@ begin
 		Yspeed	<= INITIAL_Y_SPEED;
 		topLeftY_FixedPoint	<= INITIAL_Y * FIXED_POINT_MULTIPLIER;
 		Y_ACCEL <= 0;
+		double_jump <= 1'b1;
 	end 
 	else begin
 		
@@ -77,9 +79,14 @@ begin
 		Y_ACCEL <= 0;
 		if (!footing) begin
 			Y_ACCEL <= -10;
+			if (upPressed && double_jump) begin 
+				Yspeed <= -300;
+				double_jump <= 1'b0;
+			end
 		end
 		
-		if  (footing) begin 
+		if (footing) begin 
+			double_jump <= 1'b1;
 			Yspeed <= 0;
 			if (upPressed) begin 
 				//Rope Climbing

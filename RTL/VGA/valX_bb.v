@@ -1,4 +1,4 @@
-// megafunction wizard: %LPM_CONSTANT%VBB%
+/ megafunction wizard: %LPM_CONSTANT%VBB%
 // GENERATION: STANDARD
 // VERSION: WM1.0
 // MODULE: LPM_CONSTANT 
