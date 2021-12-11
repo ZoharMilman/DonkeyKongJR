@@ -27,14 +27,20 @@ module	objects_mux	(
 					input    logic [2:0] scoreboardDR,
 					input    logic [2:0] [7:0] scoreboardRGB,
 					
-		  // grass blocks 
-					input    logic blocksDR,
-					input    logic [7:0] blocksRGB,
-					
+
 		  // ropes
 					input    logic ropesDrawingRequest, 
 					input		logic	[7:0] ropesRGB,  
+			
+	 	  // grass blocks 
+					input    logic blocksDR,
+					input    logic [7:0] blocksRGB,
 					
+		  // water blocks 
+					input    logic waterDR,
+					input    logic [7:0] waterRGB,
+					
+			
 		  // background 
 					input		logic	[7:0] backGroundRGB, 
 			
@@ -93,6 +99,10 @@ begin
 				//Grass blocks drawing
 				else if (blocksDR) 
 						RGBOut <= blocksRGB;
+
+				//Water drawing			
+				else if (waterDR) 
+						RGBOut <= waterRGB;
 						else
 							RGBOut <= backGroundRGB ; // last priority 
 		end ; 
