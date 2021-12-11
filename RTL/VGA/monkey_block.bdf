@@ -246,9 +246,25 @@ agreement for further details.
 )
 (pin
 	(input)
+	(rect 80 616 248 632)
+	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
+	(text "objectHit" (rect 5 0 48 12)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
 	(rect 80 600 248 616)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "objectHit" (rect 5 0 49 12)(font "Arial" ))
+	(text "onBlock" (rect 5 0 44 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -520,16 +536,23 @@ agreement for further details.
 	(port
 		(pt 0 176)
 		(input)
-		(text "objectHit" (rect 0 0 43 12)(font "Arial" ))
-		(text "objectHit" (rect 21 171 64 183)(font "Arial" ))
+		(text "onBlock" (rect 0 0 38 12)(font "Arial" ))
+		(text "onBlock" (rect 21 171 59 183)(font "Arial" ))
 		(line (pt 0 176)(pt 16 176))
 	)
 	(port
 		(pt 0 192)
 		(input)
+		(text "objectHit" (rect 0 0 43 12)(font "Arial" ))
+		(text "objectHit" (rect 21 187 64 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192))
+	)
+	(port
+		(pt 0 208)
+		(input)
 		(text "HitEdgeCode[3..0]" (rect 0 0 90 12)(font "Arial" ))
-		(text "HitEdgeCode[3..0]" (rect 21 187 111 199)(font "Arial" ))
-		(line (pt 0 192)(pt 16 192)(line_width 3))
+		(text "HitEdgeCode[3..0]" (rect 21 203 111 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 3))
 	)
 	(port
 		(pt 232 32)
@@ -567,13 +590,13 @@ agreement for further details.
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MAX_Y_SPEED"
-		"300"
+		"230"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 216 224))
 	)
-	(annotation_block (parameter)(rect 848 312 1056 426))
+	(annotation_block (parameter)(rect 848 312 1056 432))
 )
 (connector
 	(text "pixelY[10..0]" (rect 338 392 397 409)(font "Intel Clear" ))
@@ -678,16 +701,6 @@ agreement for further details.
 	(text "HitEdgeCode[3..0]" (rect 917 704 1001 721)(font "Intel Clear" ))
 	(pt 1592 720)
 	(pt 528 720)
-	(bus)
-)
-(connector
-	(pt 528 624)
-	(pt 528 720)
-	(bus)
-)
-(connector
-	(pt 528 624)
-	(pt 616 624)
 	(bus)
 )
 (connector
@@ -800,7 +813,22 @@ agreement for further details.
 	(bus)
 )
 (connector
-	(text "objectHit" (rect 258 592 299 609)(font "Intel Clear" ))
+	(pt 528 640)
+	(pt 528 720)
+	(bus)
+)
+(connector
+	(pt 528 640)
+	(pt 616 640)
+	(bus)
+)
+(connector
+	(text "objectHit" (rect 226 608 267 625)(font "Intel Clear" ))
+	(pt 616 624)
+	(pt 248 624)
+)
+(connector
+	(text "onBlock" (rect 418 592 456 609)(font "Intel Clear" ))
 	(pt 248 608)
 	(pt 616 608)
 )

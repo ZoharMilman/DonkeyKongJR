@@ -104,9 +104,16 @@ agreement for further details.
 	(port
 		(pt 0 208)
 		(input)
-		(text "num_hit" (rect 0 0 48 19)(font "Intel Clear" (font_size 8)))
-		(text "num_hit" (rect 21 203 69 222)(font "Intel Clear" (font_size 8)))
+		(text "onBlock" (rect 0 0 46 19)(font "Intel Clear" (font_size 8)))
+		(text "onBlock" (rect 21 203 67 222)(font "Intel Clear" (font_size 8)))
 		(line (pt 0 208)(pt 16 208))
+	)
+	(port
+		(pt 0 224)
+		(input)
+		(text "objectHit" (rect 0 0 54 19)(font "Intel Clear" (font_size 8)))
+		(text "objectHit" (rect 21 219 75 238)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 224)(pt 16 224))
 	)
 	(port
 		(pt 240 32)

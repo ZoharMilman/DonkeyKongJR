@@ -13,10 +13,16 @@ module	game_controller	(
 			input logic [NUMBERS-1:0] drawing_request_Numbers,
 			input logic drawing_request_Rope, 
 			input logic [1:0] drawing_request_Operands,
+			input logic drawing_request_Block, 
+			input logic drawing_request_Water,
 			
 			
 			output logic ropeCollision,  // active in case of collision between the monkey and a rope
+			output logic blockCollision, 
+			output logic waterCollision,
 			output logic collision, 	 // active in case of collision between two objects
+			
+			
 			output logic [NUMBERS-1:0] SingleHitPulse, // critical code, generating A single pulse in a frame 
 			output logic objectHit,
 			output logic [1:0] operandHit
@@ -36,6 +42,8 @@ assign collision = ( (drawing_request_Monkey &&  drawing_request_Brackets) || (d
 						|| (drawing_request_Monkey &&  drawing_request_Rope) || (drawing_request_Monkey && drawing_request_Operands));// any collision 
 						 						
 assign ropeCollision = (drawing_request_Monkey && drawing_request_Rope);
+assign blockCollision = (drawing_request_Monkey && drawing_request_Block);
+assign waterCollision = (drawing_request_Monkey && drawing_request_Water);
 assign objectHit = ((drawing_request_Monkey && drawing_request_Numbers) || (drawing_request_Monkey && drawing_request_Operands));
 
 
