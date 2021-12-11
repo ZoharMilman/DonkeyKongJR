@@ -12,7 +12,7 @@ module	objects_mux	(
 					input		logic	clk,
 					input		logic	resetN,
 		   // monkey 
-					input		logic	monkeyDrawingRequest, // two set of inputs per unit
+					input		logic	monkeyDrawingRequest, 
 					input		logic	[7:0] monkeyRGB, 
 					     
 		  // numbers
@@ -27,12 +27,18 @@ module	objects_mux	(
 					input    logic [2:0] scoreboardDR,
 					input    logic [2:0] [7:0] scoreboardRGB,
 					
+		  // grass blocks 
+					input    logic blocksDR,
+					input    logic [7:0] blocksRGB,
+					
+		  // ropes
+					input    logic ropesDrawingRequest, 
+					input		logic	[7:0] ropesRGB,  
 					
 		  // background 
-					input    logic ropesDrawingRequest, // box of numbers
-					input		logic	[7:0] ropesRGB,   
 					input		logic	[7:0] backGroundRGB, 
-			  
+			
+			
 				   output	logic	[7:0] RGBOut
 );
 
@@ -83,7 +89,11 @@ begin
 				//Rope drawing
 				else if (ropesDrawingRequest == 1'b1)
 						RGBOut <= ropesRGB;
-						else 
+				
+				//Grass blocks drawing
+				else if (blocksDR) 
+						RGBOut <= blocksRGB;
+						else
 							RGBOut <= backGroundRGB ; // last priority 
 		end ; 
 	end
