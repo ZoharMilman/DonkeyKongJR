@@ -1,0 +1,13 @@
+//This module uses a for loop to create a few number and set their locations to desired locations. 
+//-- Zohar Milman Dec 2021 
+
+
+module MULTIPLE_NUMBERS_DISPLAY (
+			//System inputs 
+			input logic clk 
+				
+
+)
+
+
+endmodule  
