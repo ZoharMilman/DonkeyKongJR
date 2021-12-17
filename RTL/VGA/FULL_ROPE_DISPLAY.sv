@@ -6,6 +6,7 @@ module FULL_ROPE_DISPLAY (
 			//System inputs 
 			input logic clk,
 			input logic resetN,
+			input logic startOfFrame,
 			
 			//VGA inputs
 			input logic [10:0] pixelX,
@@ -22,10 +23,6 @@ module FULL_ROPE_DISPLAY (
 
 
 
-parameter int topLeftX = 150;
-parameter int topLeftY = 100;
-
-
 genvar i;
 
 generate
@@ -36,10 +33,9 @@ generate
 		SINGLE_ROPE_DISPLAY rope (
 										.clk(clk),
 										.resetN(resetN),
+										.startOfFrame(startOfFrame),
 										.pixelX(pixelX),
 										.pixelY(pixelY), 
-										.topLeftX(topLeftX),  
-										.topLeftY(topLeftY),
 										.ropesDrawingRequest(ropeDR),
 										.ropesRGB(ropeRGB)
 									 );

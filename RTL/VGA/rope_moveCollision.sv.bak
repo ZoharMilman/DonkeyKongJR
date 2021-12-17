@@ -1,0 +1,39 @@
+
+
+
+
+module rope_moveCollision (
+		//System inputs 
+		logic clk, 
+		logic resetN
+		
+		//Collisions inputs 
+	
+
+)
+
+
+parameter int X_SPEED;
+
+//////////--------------------------------------------------------------------------------------------------------------=
+//  calculation of X Axis speed using and position calculate regarding X_direction key or collision
+
+
+always_ff@(posedge clk or negedge resetN)
+begin
+	if(!resetN)
+	begin
+		Xspeed	<= X_SPEED;
+		topLeftX_FixedPoint	<= INITIAL_X * FIXED_POINT_MULTIPLIER;
+	end
+	
+	else begin 
+			if (startOfFrame == 1'b1) begin
+			topLeftX_FixedPoint  <= topLeftX_FixedPoint + Xspeed;
+		end
+	end
+end
+
+assign 	topLeftX = topLeftX_FixedPoint / FIXED_POINT_MULTIPLIER ;
+
+endmodule 

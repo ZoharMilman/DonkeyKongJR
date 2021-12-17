@@ -264,7 +264,7 @@ agreement for further details.
 	(input)
 	(rect 80 600 248 616)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "onBlock" (rect 5 0 44 17)(font "Intel Clear" ))
+	(text "onBlock" (rect 5 0 43 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -596,7 +596,7 @@ agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 216 224))
 	)
-	(annotation_block (parameter)(rect 848 312 1056 432))
+	(annotation_block (parameter)(rect 640 232 848 352))
 )
 (connector
 	(text "pixelY[10..0]" (rect 338 392 397 409)(font "Intel Clear" ))

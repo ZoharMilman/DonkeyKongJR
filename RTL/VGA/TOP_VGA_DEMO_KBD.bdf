@@ -33,18 +33,6 @@ agreement for further details.
 		(line (pt 138 40)(pt 138 0))
 	)
 )
-(global
-	(rect -1048 520 -760 560)
-	(parameter)
-	(text "PARAM" (rect 3 -1 46 13)(font "Arial" (font_size 8)))
-	(text "DEFAULT VALUE" (rect 141 0 229 12)(font "Arial" ))
-	(text "x" (rect 3 16 10 30)(font "Arial" (font_size 8)))
-	(text " NAME" (rect 108 0 142 12)(font "Arial" ))
-	(text "B\"00001000000\"" (rect 141 16 218 30)(font "Arial" (font_size 8)))
-	(drawing
-		(line (pt 138 40)(pt 138 0))
-	)
-)
 (pin
 	(input)
 	(rect 344 816 520 832)
@@ -1488,9 +1476,9 @@ agreement for further details.
 	(annotation_block (parameter)(rect 88 1760 295 1950))
 )
 (symbol
-	(rect -240 680 -32 792)
+	(rect -240 680 -24 824)
 	(text "FULL_ROPE_DISPLAY" (rect 5 0 121 12)(font "Arial" ))
-	(text "inst7" (rect 8 96 30 113)(font "Intel Clear" ))
+	(text "inst13" (rect 8 128 36 145)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -1508,45 +1496,41 @@ agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "pixelX[10..0]" (rect 0 0 60 12)(font "Arial" ))
-		(text "pixelX[10..0]" (rect 21 59 81 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 3))
+		(text "startOfFrame" (rect 0 0 67 12)(font "Arial" ))
+		(text "startOfFrame" (rect 21 59 88 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
 	)
 	(port
 		(pt 0 80)
 		(input)
-		(text "pixelY[10..0]" (rect 0 0 62 12)(font "Arial" ))
-		(text "pixelY[10..0]" (rect 21 75 83 87)(font "Arial" ))
+		(text "pixelX[10..0]" (rect 0 0 60 12)(font "Arial" ))
+		(text "pixelX[10..0]" (rect 21 75 81 87)(font "Arial" ))
 		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
-		(pt 208 32)
-		(output)
-		(text "ropeDR" (rect 0 0 37 12)(font "Arial" ))
-		(text "ropeDR" (rect 156 27 193 39)(font "Arial" ))
-		(line (pt 208 32)(pt 192 32))
+		(pt 0 96)
+		(input)
+		(text "pixelY[10..0]" (rect 0 0 62 12)(font "Arial" ))
+		(text "pixelY[10..0]" (rect 21 91 83 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
 	)
 	(port
-		(pt 208 48)
+		(pt 216 32)
+		(output)
+		(text "ropeDR" (rect 0 0 37 12)(font "Arial" ))
+		(text "ropeDR" (rect 164 27 201 39)(font "Arial" ))
+		(line (pt 216 32)(pt 200 32))
+	)
+	(port
+		(pt 216 48)
 		(output)
 		(text "ropeRGB[7..0]" (rect 0 0 70 12)(font "Arial" ))
-		(text "ropeRGB[7..0]" (rect 128 43 198 55)(font "Arial" ))
-		(line (pt 208 48)(pt 192 48)(line_width 3))
+		(text "ropeRGB[7..0]" (rect 136 43 206 55)(font "Arial" ))
+		(line (pt 216 48)(pt 200 48)(line_width 3))
 	)
-	(parameter
-		"topLeftX"
-		"150"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"topLeftY"
-		"100"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 192 96))
+		(rectangle (rect 16 16 200 128))
 	)
-	(annotation_block (parameter)(rect -32 616 144 680))
 )
 (connector
 	(pt 64 104)
@@ -1612,18 +1596,6 @@ agreement for further details.
 	(text "resetN" (rect -294 712 -264 729)(font "Intel Clear" ))
 	(pt -440 728)
 	(pt -240 728)
-)
-(connector
-	(text "pixelX[10..0]" (rect -302 728 -243 745)(font "Intel Clear" ))
-	(pt -440 744)
-	(pt -240 744)
-	(bus)
-)
-(connector
-	(text "pixelY[10..0]" (rect -302 744 -243 761)(font "Intel Clear" ))
-	(pt -440 760)
-	(pt -240 760)
-	(bus)
 )
 (connector
 	(text "clk" (rect 232 48 246 65)(font "Intel Clear" ))
@@ -2345,15 +2317,32 @@ agreement for further details.
 	(bus)
 )
 (connector
-	(text "ropesDrawingRequest" (rect -22 696 81 713)(font "Intel Clear" ))
-	(pt -32 712)
-	(pt 88 712)
+	(text "ropesDrawingRequest" (rect -14 696 89 713)(font "Intel Clear" ))
+	(pt -24 712)
+	(pt 96 712)
 )
 (connector
-	(text "ropesRGB[7..0]" (rect -22 712 48 729)(font "Intel Clear" ))
-	(pt -32 728)
-	(pt 88 728)
+	(text "ropesRGB[7..0]" (rect -14 712 56 729)(font "Intel Clear" ))
+	(pt -24 728)
+	(pt 96 728)
 	(bus)
+)
+(connector
+	(text "pixelX[10..0]" (rect -302 744 -243 761)(font "Intel Clear" ))
+	(pt -440 760)
+	(pt -240 760)
+	(bus)
+)
+(connector
+	(text "pixelY[10..0]" (rect -302 760 -243 777)(font "Intel Clear" ))
+	(pt -440 776)
+	(pt -240 776)
+	(bus)
+)
+(connector
+	(text "startOfFrame" (rect -438 728 -375 745)(font "Intel Clear" ))
+	(pt -240 744)
+	(pt -440 744)
 )
 (junction (pt 552 944))
 (text "Sound Unit" (rect 496 784 562 803)(font "Intel Clear" (font_size 8)))
@@ -2373,6 +2362,6 @@ agreement for further details.
 (rectangle (rect 328 768 1256 984)(color 0 0 0)(line_width 3))
 (rectangle (rect 448 -16 984 352)(color 0 0 0)(line_width 3))
 (rectangle (rect -296 168 328 376)(color 0 0 0)(line_width 3))
-(rectangle (rect -512 408 288 1168)(color 0 0 0)(line_width 3))
+(rectangle (rect -512 416 288 1176)(color 0 0 0)(line_width 3))
 (rectangle (rect -568 1288 1040 1744)(color 0 0 0)(line_width 3))
 (rectangle (rect -576 1752 1032 2208)(color 0 0 0)(line_width 3))
