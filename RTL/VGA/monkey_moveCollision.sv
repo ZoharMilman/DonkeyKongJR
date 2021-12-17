@@ -33,7 +33,7 @@ module	monkey_moveCollision	(
 );
 
 logic footing;
-assign footing = (onRope | onBlock); 
+assign footing = (onRope | (onBlock && HitEdgeCode[0])); 
  
 
 parameter int INITIAL_X = 280;
