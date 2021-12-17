@@ -11,7 +11,7 @@ module	game_controller	(
 			input	logic	drawing_request_Monkey,
 			input	logic	drawing_request_Brackets,
 			input logic [NUMBERS-1:0] drawing_request_Numbers,
-			input logic drawing_request_Rope, 
+			input logic [ROPES-1:0] drawing_request_Rope, 
 			input logic [1:0] drawing_request_Operands,
 			input logic drawing_request_Block, 
 			input logic drawing_request_Water,
@@ -21,7 +21,7 @@ module	game_controller	(
 			output logic blockCollision, 
 			output logic waterCollision,
 			output logic collision, 	 // active in case of collision between two objects
-			output logic ropeDirectionToggle, //active if the rope hits anything other then the monkey
+			output logic [ROPES-1:0] ropeDirectionToggle, //active if the rope hits anything other then the monkey
 			
 			
 			output logic [NUMBERS-1:0] SingleHitPulse, // critical code, generating A single pulse in a frame 
@@ -36,6 +36,7 @@ module	game_controller	(
 
 
 parameter int NUMBERS = 3; 
+parameter int ROPES = 6; 
 
 int i;
 
@@ -49,7 +50,12 @@ assign waterCollision = (drawing_request_Monkey && drawing_request_Water);
 assign objectHit = ((drawing_request_Monkey && drawing_request_Numbers) || (drawing_request_Monkey && drawing_request_Operands));
 
 //Rope collisions
-assign ropeDirectionToggle = ((drawing_request_Rope && drawing_request_Block) || (drawing_request_Rope && drawing_request_Brackets));
+always_comb begin
+	for (i = 0; i < ROPES; i = i + 1) begin
+		ropeDirectionToggle[i] = ((drawing_request_Rope[i] && drawing_request_Block) || (drawing_request_Rope[i] && drawing_request_Brackets));
+	end
+end
+
 
 logic flag ; // a semaphore to set the output only once per frame / regardless of the number of collisions
  

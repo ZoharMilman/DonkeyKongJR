@@ -29,8 +29,8 @@ module	objects_mux	(
 					
 
 		  // ropes
-					input    logic ropesDrawingRequest, 
-					input		logic	[7:0] ropesRGB,  
+					input    logic [ROPES-1:0] ropesDrawingRequest, 
+					input		logic	[ROPES-1:0][7:0] ropesRGB,  
 			
 	 	  // grass blocks 
 					input    logic blocksDR,
@@ -51,6 +51,7 @@ module	objects_mux	(
 
 
 parameter int NUMBERS = 3; 
+parameter int ROPES = 6; 
 
 int i; 
 
@@ -93,8 +94,13 @@ begin
 				end
 				
 				//Rope drawing
-				else if (ropesDrawingRequest == 1'b1)
-						RGBOut <= ropesRGB;
+				else if (ropesDrawingRequest)
+					for (i = 0; i < ROPES; i = i + 1) begin
+				
+							if (ropesDrawingRequest[i]) 
+								RGBOut <= ropesRGB[i];
+							
+						  end
 				
 				//Grass blocks drawing
 				else if (blocksDR) 

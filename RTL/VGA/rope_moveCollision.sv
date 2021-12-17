@@ -11,6 +11,10 @@ module rope_moveCollision (
 		//Collisions inputs 
 		input logic dirToggle,
 		
+		//Movement inputs
+		input int X_SPEED,
+		input int INITIAL_X,
+		input int INITIAL_Y,
 		
 		
 		output logic signed [10:0] topLeftX,
@@ -20,9 +24,9 @@ module rope_moveCollision (
 
 const int	FIXED_POINT_MULTIPLIER	=	64;
 
-parameter int X_SPEED = 30;
-parameter int INITIAL_X = 280;
-parameter int INITIAL_Y = 100;
+//parameter int X_SPEED = 30;
+//parameter int INITIAL_X = 280;
+//parameter int INITIAL_Y = 100;
 int Xspeed, topLeftX_FixedPoint; // local parameters 
 //////////--------------------------------------------------------------------------------------------------------------=
 //  calculation of X Axis speed using and position calculate regarding X_direction key or collision
