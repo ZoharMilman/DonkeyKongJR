@@ -62,7 +62,7 @@ agreement for further details.
 )
 (pin
 	(input)
-	(rect -192 456 -24 472)
+	(rect -192 496 -24 512)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "pixelX[10..0]" (rect 5 0 64 17)(font "Intel Clear" ))
 	(pt 168 8)
@@ -78,7 +78,7 @@ agreement for further details.
 )
 (pin
 	(input)
-	(rect -192 472 -24 488)
+	(rect -192 512 -24 528)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
 	(text "pixelY[10..0]" (rect 5 0 64 17)(font "Intel Clear" ))
 	(pt 168 8)
@@ -112,7 +112,23 @@ agreement for further details.
 	(input)
 	(rect -192 440 -24 456)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "startOfFrame" (rect 5 0 69 17)(font "Intel Clear" ))
+	(text "startOfFrame" (rect 5 0 68 17)(font "Intel Clear" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -192 456 -24 472)
+	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
+	(text "dirToggle" (rect 5 0 50 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -310,7 +326,7 @@ agreement for further details.
 (symbol
 	(rect 200 392 416 504)
 	(text "rope_moveCollision" (rect 5 0 101 12)(font "Arial" ))
-	(text "inst5" (rect 8 96 30 113)(font "Intel Clear" ))
+	(text "inst4" (rect 8 96 30 113)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -333,6 +349,13 @@ agreement for further details.
 		(line (pt 0 64)(pt 16 64))
 	)
 	(port
+		(pt 0 80)
+		(input)
+		(text "dirToggle" (rect 0 0 43 12)(font "Arial" ))
+		(text "dirToggle" (rect 21 75 64 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
 		(pt 216 32)
 		(output)
 		(text "topLeftX[10..0]" (rect 0 0 73 12)(font "Arial" ))
@@ -353,7 +376,7 @@ agreement for further details.
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"INITIAL_X"
-		"150"
+		"100"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
@@ -364,7 +387,7 @@ agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 200 96))
 	)
-	(annotation_block (parameter)(rect 352 296 521 372))
+	(annotation_block (parameter)(rect 416 312 585 388))
 )
 (connector
 	(pt 1624 312)
@@ -430,6 +453,21 @@ agreement for further details.
 	(bus)
 )
 (connector
+	(text "clk" (rect 642 344 656 361)(font "Intel Clear" ))
+	(pt 632 360)
+	(pt 752 360)
+)
+(connector
+	(text "resetN" (rect 642 360 672 377)(font "Intel Clear" ))
+	(pt 752 376)
+	(pt 632 376)
+)
+(connector
+	(pt 416 440)
+	(pt 752 440)
+	(bus)
+)
+(connector
 	(text "clk" (rect 154 408 168 425)(font "Intel Clear" ))
 	(pt 200 424)
 	(pt 144 424)
@@ -445,18 +483,8 @@ agreement for further details.
 	(pt 144 456)
 )
 (connector
-	(text "clk" (rect 642 344 656 361)(font "Intel Clear" ))
-	(pt 632 360)
-	(pt 752 360)
-)
-(connector
-	(text "resetN" (rect 642 360 672 377)(font "Intel Clear" ))
-	(pt 752 376)
-	(pt 632 376)
-)
-(connector
-	(pt 416 440)
-	(pt 752 440)
-	(bus)
+	(text "dirToggle" (rect 154 456 198 473)(font "Intel Clear" ))
+	(pt 200 472)
+	(pt 144 472)
 )
 (rectangle (rect -576 192 1824 568)(color 0 0 0)(line_width 3))
