@@ -91,7 +91,7 @@ generate
 											.KeyPad(numbersToShow[i]), 
 											.X_SPEED(SIGNED_SPEEDS[i / 3]),
 											.INITIAL_X(INITIAL_X+5),
-											.INITIAL_Y(100 + ((i % 3) * yDiff)),
+											.INITIAL_Y(80 + ((i % 3) * yDiff)),
 											.show(showNum[i]),
 											.numDR(numbersDR[i]),
 											.numRGB(numbersRGB[i])

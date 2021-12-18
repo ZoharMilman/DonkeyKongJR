@@ -402,7 +402,7 @@ agreement for further details.
 (symbol
 	(rect 792 272 1024 416)
 	(text "number_moveCollision" (rect 5 0 117 12)(font "Arial" ))
-	(text "inst1" (rect 8 128 30 145)(font "Intel Clear" ))
+	(text "inst3" (rect 8 128 30 145)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -459,9 +459,25 @@ agreement for further details.
 		(text "topLeftY[10..0]" (rect 148 43 223 55)(font "Arial" ))
 		(line (pt 232 48)(pt 216 48)(line_width 3))
 	)
+	(parameter
+		"Y_SPEED"
+		"30"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"upperYlimit"
+		"80"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"lowerYlimit"
+		"248"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 216 128))
 	)
+	(annotation_block (parameter)(rect 776 160 953 236))
 )
 (connector
 	(text "pixelX[10..0]" (rect 1040 256 1099 273)(font "Intel Clear" ))
