@@ -58,8 +58,7 @@ assign blockCollision = (drawing_request_Monkey && drawing_request_Block);
 assign waterCollision = (drawing_request_Monkey && drawing_request_Water);
 assign objectHit = ((drawing_request_Monkey && drawing_request_Numbers) || (drawing_request_Monkey && drawing_request_Operands));
 
-assign onlyBGandMonkey = (drawing_request_Monkey && !drawing_request_Numbers && !drawing_request_Block && !drawing_request_Water &&
-								!drawing_request_Rope && !drawing_request_Brackets && !drawing_request_Operands);
+assign onlyBGandMonkey = (drawing_request_Monkey && !collision);
 
 
 //Rope collisions
