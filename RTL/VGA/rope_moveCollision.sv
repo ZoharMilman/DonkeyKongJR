@@ -16,7 +16,7 @@ module rope_moveCollision (
 		input int INITIAL_X,
 		input int INITIAL_Y,
 		
-		
+		output int SPEED,
 		output logic signed [10:0] topLeftX,
 		output logic signed [10:0] topLeftY
 
@@ -57,6 +57,12 @@ begin
 		end
 	end
 end
+
+
+always_comb begin 
+	SPEED = Xspeed; 
+end
+
 
 assign 	topLeftX = topLeftX_FixedPoint / FIXED_POINT_MULTIPLIER ;
 assign   topLeftY = INITIAL_Y;

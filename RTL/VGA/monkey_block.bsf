@@ -21,9 +21,9 @@ agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 256 272)
+	(rect 16 16 288 304)
 	(text "monkey_block" (rect 5 0 91 19)(font "Intel Clear" (font_size 8)))
-	(text "inst" (rect 8 235 24 252)(font "Intel Clear" ))
+	(text "inst" (rect 8 267 24 284)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -116,18 +116,25 @@ agreement for further details.
 		(line (pt 0 224)(pt 16 224))
 	)
 	(port
-		(pt 240 32)
-		(output)
-		(text "monkeyDR" (rect 0 0 64 19)(font "Intel Clear" (font_size 8)))
-		(text "monkeyDR" (rect 155 27 219 46)(font "Intel Clear" (font_size 8)))
-		(line (pt 240 32)(pt 224 32))
+		(pt 0 240)
+		(input)
+		(text "addedSpeed[31..0]" (rect 0 0 116 19)(font "Intel Clear" (font_size 8)))
+		(text "addedSpeed[31..0]" (rect 21 235 137 254)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 240)(pt 16 240)(line_width 3))
 	)
 	(port
-		(pt 240 48)
+		(pt 272 32)
+		(output)
+		(text "monkeyDR" (rect 0 0 64 19)(font "Intel Clear" (font_size 8)))
+		(text "monkeyDR" (rect 187 27 251 46)(font "Intel Clear" (font_size 8)))
+		(line (pt 272 32)(pt 256 32))
+	)
+	(port
+		(pt 272 48)
 		(output)
 		(text "monkeyRGB[7..0]" (rect 0 0 103 19)(font "Intel Clear" (font_size 8)))
-		(text "monkeyRGB[7..0]" (rect 116 43 219 62)(font "Intel Clear" (font_size 8)))
-		(line (pt 240 48)(pt 224 48)(line_width 3))
+		(text "monkeyRGB[7..0]" (rect 148 43 251 62)(font "Intel Clear" (font_size 8)))
+		(line (pt 272 48)(pt 256 48)(line_width 3))
 	)
 	(parameter
 		"initial_x"
@@ -150,7 +157,7 @@ agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 224 240))
+		(rectangle (rect 16 16 256 272))
 	)
-	(annotation_block (parameter)(rect 256 -64 356 16))
+	(annotation_block (parameter)(rect 288 -64 388 16))
 )

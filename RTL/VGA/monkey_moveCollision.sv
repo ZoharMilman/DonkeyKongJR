@@ -26,6 +26,9 @@ module	monkey_moveCollision	(
 					input logic onBlock, 
 					input logic objectHit,  
 					input	logic	[3:0] HitEdgeCode, //one bit per edge 
+					
+					//Movement inputs
+					input int addedSpeed,
 
 					output	 logic signed 	[10:0]	topLeftX, // output the top left corner 
 					output	 logic signed	[10:0]	topLeftY  // can be negative , if the object is partliy outside 
@@ -125,8 +128,10 @@ begin
 	
 	else begin
 
-		//Default value of Xspeed is 0
-		Xspeed<= INITIAL_X_SPEED;
+		//Default value of Xspeed is the current ropes speed
+		
+
+		Xspeed<= INITIAL_X_SPEED + addedSpeed;
 		
 		if (rightPressed && topLeftX < 570) begin 
 			//Handling edge of screen limitations, left side
