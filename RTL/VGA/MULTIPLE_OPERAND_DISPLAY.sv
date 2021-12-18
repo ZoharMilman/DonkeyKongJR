@@ -6,6 +6,7 @@ module MULTIPLE_OPERAND_DISPLAY (
 			//VGA inputs
 			input logic [10:0] pixelX,
 			input logic [10:0] pixelY,
+			input logic startOfFrame,
 			
 			//Collision inputs
 			input logic [1:0] singleHit,
@@ -25,14 +26,14 @@ parameter int plusY = 430;
 
 parameter int minusX = 250; 
 parameter int minusY = 430; 
-
 int j;
-logic [1:0] showOperand; 
+logic [1:0] showOperand;
+logic [1:0][8:0] timeout; 
 
 always_ff@(posedge clk or negedge resetN) begin
 
 	if (!resetN) begin
-	
+		timeout <= 18'b0;
 		for (j = 0; j < 2; j = j + 1) begin
 			showOperand[j] <= 1'b1;
 		end
@@ -42,10 +43,15 @@ always_ff@(posedge clk or negedge resetN) begin
 	else begin
 			
 		for (j = 0; j < 2; j = j + 1) begin
-			if (singleHit[j]) showOperand[j] <= 1'b0;
-			else if (showOperand[j]) showOperand[j] <= 1'b1;
+			if (singleHit[j]) timeout[j] <= 9'd450;
+			else if (timeout[j] == 9'b0) showOperand[j] <= 1'b1;
+			else showOperand[j] <= 1'b0;
 		end
 		
+		if (startOfFrame) begin
+			if (timeout[0]) timeout[0] <= timeout[0] -1;
+			if (timeout[1]) timeout[1] <= timeout[1] -1;
+		end	
 	end
 end
 

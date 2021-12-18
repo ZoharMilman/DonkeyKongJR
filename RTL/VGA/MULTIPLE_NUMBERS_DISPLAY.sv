@@ -11,6 +11,7 @@ module MULTIPLE_NUMBERS_DISPLAY (
 			//VGA inputs
 			input logic [10:0] pixelX,
 			input logic [10:0] pixelY,
+			input logic startOfFrame,
 			
 			
 			//Collision inputs
@@ -19,7 +20,8 @@ module MULTIPLE_NUMBERS_DISPLAY (
 			//We have a drawing request and rgbout for each of the 12 numbers
 			output logic [NUMBERS-1:0] numbersDR, //output that the pixel should be dispalyed 
 //			output logic anyNumDR,					//An output to be set to 1 when there is a number drawing request
-			output logic [NUMBERS-1:0] [7:0] numbersRGB
+			output logic [NUMBERS-1:0] [7:0] numbersRGB,
+			output logic [NUMBERS-1:0] showNum
 			
 );
 
@@ -41,13 +43,14 @@ parameter int NUMBERS = 3;
 
 //Creating hit flags for the disappearing numbers. 
 
-logic [NUMBERS-1:0] showNum; 
+logic [NUMBERS-1:0] [8:0] timeout; 
 
 always_ff@(posedge clk or negedge resetN) begin
 
 	if (!resetN) begin
 	
 		for (j = 0; j < NUMBERS; j = j + 1) begin
+			timeout[j] <= 9'b0;
 			showNum[j] <= 1'b1;
 		end
 		
@@ -56,8 +59,14 @@ always_ff@(posedge clk or negedge resetN) begin
 	else begin
 			
 		for (j = 0; j < NUMBERS; j = j + 1) begin
-			if (singleHit[j]) showNum[j] <= 1'b0;
-			else if (showNum[j]) showNum[j] <= 1'b1;
+			if (singleHit[j]) timeout[j] <= 9'd450;
+			else if (timeout[j] == 9'b0) showNum[j] <= 1'b1;
+			else showNum[j] <= 1'b0;
+		end
+		if (startOfFrame) begin
+			for (j = 0; j < NUMBERS; j = j + 1) begin
+				if (timeout[j]) timeout[j] <= timeout[j] -1;
+			end
 		end
 		
 	end
