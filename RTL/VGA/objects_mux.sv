@@ -39,7 +39,9 @@ module	objects_mux	(
 		  // water blocks 
 					input    logic waterDR,
 					input    logic [7:0] waterRGB,
-					
+		  // ceiing
+					input    logic ceilingDR,
+					input    logic [7:0] ceilingRGB, 
 			
 		  // background 
 					input		logic	[7:0] backGroundRGB, 
@@ -105,7 +107,11 @@ begin
 				//Grass blocks drawing
 				else if (blocksDR) 
 						RGBOut <= blocksRGB;
-
+				
+				//Ceiling drawing
+				else if (ceilingDR)
+						RGBOut <= ceilingDR;
+				
 				//Water drawing			
 				else if (waterDR) 
 						RGBOut <= waterRGB;

@@ -51,33 +51,33 @@ end
 ///////-----------------------------------------------------------------------------------------------------------------
 // y axis movement calculation
 
-always_ff@(posedge clk or negedge resetN)
-begin
-	if(!resetN)
-	begin
-		flag <= 1'b0;
-		Yspeed <= Y_SPEED;
-		topLeftY_FixedPoint <= INITIAL_Y * FIXED_POINT_MULTIPLIER;
-	end
-	
-	else begin 
-		
-		if ((topLeftY < upperYlimit || topLeftY > lowerYlimit) && !flag) begin
-			Yspeed <= -Yspeed;
-			flag <= 1'b1;
-		end
-		
-		if (startOfFrame == 1'b1) begin
-			flag <= 1'b0;
-			topLeftY_FixedPoint  <= topLeftY_FixedPoint + Y_SPEED;
-		end
-	end
-end
+//always_ff@(posedge clk or negedge resetN)
+//begin
+//	if(!resetN)
+//	begin
+//		flag <= 1'b0;
+//		Yspeed <= Y_SPEED;
+//		topLeftY_FixedPoint <= INITIAL_Y * FIXED_POINT_MULTIPLIER;
+//	end
+//	
+//	else begin 
+//		
+//		if ((topLeftY < upperYlimit || topLeftY > lowerYlimit) && !flag) begin
+//			Yspeed <= -Yspeed;
+//			flag <= 1'b1;
+//		end
+//		
+//		if (startOfFrame == 1'b1) begin
+//			flag <= 1'b0;
+//			topLeftY_FixedPoint  <= topLeftY_FixedPoint + Y_SPEED;
+//		end
+//	end
+//end
 
 
 
 assign 	topLeftX = topLeftX_FixedPoint / FIXED_POINT_MULTIPLIER ;
-assign   topLeftY = topLeftY_FixedPoint / FIXED_POINT_MULTIPLIER;
+assign   topLeftY = INITIAL_Y;//topLeftY_FixedPoint / FIXED_POINT_MULTIPLIER;
 endmodule 
 
 

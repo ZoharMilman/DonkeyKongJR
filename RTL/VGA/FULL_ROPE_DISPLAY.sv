@@ -74,7 +74,7 @@ generate
 										.dirToggle(dirToggle[i]),
 										.X_SPEED((i+1) * 20),
 										.INITIAL_X(400),
-										.INITIAL_Y(100),
+										.INITIAL_Y(80),
 										.pixelX(pixelX),
 										.pixelY(pixelY), 
 										.ropesDrawingRequest(ropeDR[i]),

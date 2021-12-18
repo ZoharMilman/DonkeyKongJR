@@ -32,11 +32,13 @@ module MULTIPLE_NUMBERS_DISPLAY (
 int j;
 int COLUMN_X, COLUMN_SPEED;
 
-parameter int INITIAL_X = 150;
-parameter int xDiff = 50;
+parameter int INITIAL_X_LEFT = 150;
+parameter int INITIAL_X_RIGHT = 300;
 parameter int yDiff = 100;
 
-parameter int COLUMNS = 3;
+parameter int LEFT_NUMBERS = 9;
+parameter int RIGHT_NUMBERS = 9;
+
 parameter int NUMBERS = 3;
 parameter int ROPES = 6;
 
@@ -77,9 +79,9 @@ genvar i;
 
 
 generate
-	
+	//Left side
 	//We have 3 numbers per column, so all in all NUMBERS/3 columns
-		for (i = 0; i < NUMBERS; i = i + 1) begin : NUMBER_DISPLAY_GENERATION
+		for (i = 0; i < LEFT_NUMBERS; i = i + 1) begin : LEFT_NUMBER_DISPLAY_GENERATION
 			//creating the numbers in each column.
 			NUMBER_DISPLAY number (
 											.clk(clk),
@@ -90,13 +92,32 @@ generate
 											.pixelY(pixelY),
 											.KeyPad(numbersToShow[i]), 
 											.X_SPEED(SIGNED_SPEEDS[i / 3]),
-											.INITIAL_X(INITIAL_X+5),
+											.INITIAL_X(INITIAL_X_LEFT+5),
 											.INITIAL_Y(80 + ((i % 3) * yDiff)),
 											.show(showNum[i]),
 											.numDR(numbersDR[i]),
 											.numRGB(numbersRGB[i])
 										 );
-		end							 
+		end	
+		
+		//Right side
+		for (i = LEFT_NUMBERS; i < NUMBERS; i = i + 1) begin : RIGHT_NUMBER_DISPLAY_GENERATION
+			NUMBER_DISPLAY number (
+											.clk(clk),
+											.resetN(resetN),
+											.singleHit(singleHit),
+											.startOfFrame(startOfFrame),
+											.pixelX(pixelX),
+											.pixelY(pixelY),
+											.KeyPad(numbersToShow[i]), 
+											.X_SPEED(SIGNED_SPEEDS[i / 3]),
+											.INITIAL_X(INITIAL_X_RIGHT+5),
+											.INITIAL_Y(80 + ((i % 3) * yDiff)),
+											.show(showNum[i]),
+											.numDR(numbersDR[i]),
+											.numRGB(numbersRGB[i])
+										 );
+		end				
 endgenerate 
 
 
