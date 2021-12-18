@@ -21,9 +21,9 @@ agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 272 144)
+	(rect 16 16 288 176)
 	(text "ROPES_DISPLAY" (rect 5 0 106 19)(font "Intel Clear" (font_size 8)))
-	(text "inst" (rect 8 107 24 124)(font "Intel Clear" ))
+	(text "inst" (rect 8 139 24 156)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -53,18 +53,32 @@ agreement for further details.
 		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
-		(pt 256 32)
-		(output)
-		(text "ropesDrawingRequest" (rect 0 0 129 19)(font "Intel Clear" (font_size 8)))
-		(text "ropesDrawingRequest" (rect 106 27 235 46)(font "Intel Clear" (font_size 8)))
-		(line (pt 256 32)(pt 240 32))
+		(pt 0 96)
+		(input)
+		(text "topLeftX[10..0]" (rect 0 0 90 19)(font "Intel Clear" (font_size 8)))
+		(text "topLeftX[10..0]" (rect 21 91 111 110)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
 	)
 	(port
-		(pt 256 48)
+		(pt 0 112)
+		(input)
+		(text "topLeftY[10..0]" (rect 0 0 90 19)(font "Intel Clear" (font_size 8)))
+		(text "topLeftY[10..0]" (rect 21 107 111 126)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 112)(pt 16 112)(line_width 3))
+	)
+	(port
+		(pt 272 32)
+		(output)
+		(text "ropesDrawingRequest" (rect 0 0 129 19)(font "Intel Clear" (font_size 8)))
+		(text "ropesDrawingRequest" (rect 122 27 251 46)(font "Intel Clear" (font_size 8)))
+		(line (pt 272 32)(pt 256 32))
+	)
+	(port
+		(pt 272 48)
 		(output)
 		(text "ropesRGB[7..0]" (rect 0 0 89 19)(font "Intel Clear" (font_size 8)))
-		(text "ropesRGB[7..0]" (rect 146 43 235 62)(font "Intel Clear" (font_size 8)))
-		(line (pt 256 48)(pt 240 48)(line_width 3))
+		(text "ropesRGB[7..0]" (rect 162 43 251 62)(font "Intel Clear" (font_size 8)))
+		(line (pt 272 48)(pt 256 48)(line_width 3))
 	)
 	(parameter
 		"hart_topleftx"
@@ -77,7 +91,7 @@ agreement for further details.
 		""
 		(type "PARAMETER_UNSIGNED_HEX")	)
 	(drawing
-		(rectangle (rect 16 16 240 112))
+		(rectangle (rect 16 16 256 144))
 	)
-	(annotation_block (parameter)(rect 272 -64 372 16))
+	(annotation_block (parameter)(rect 288 -64 388 16))
 )
