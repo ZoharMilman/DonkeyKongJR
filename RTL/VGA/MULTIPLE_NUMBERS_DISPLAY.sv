@@ -13,6 +13,8 @@ module MULTIPLE_NUMBERS_DISPLAY (
 			input logic [10:0] pixelY,
 			input logic startOfFrame,
 			
+			//Movement inputs 
+			input logic [ROPES-1:0][31:0] SIGNED_SPEEDS,
 			
 			//Collision inputs
 			input logic [NUMBERS-1:0] singleHit,
@@ -28,18 +30,15 @@ module MULTIPLE_NUMBERS_DISPLAY (
 
 
 int j;
+int COLUMN_X, COLUMN_SPEED;
 
-parameter int topLeftX = 150;
-parameter int topLeftY = 100;
+parameter int INITIAL_X = 150;
 parameter int xDiff = 50;
 parameter int yDiff = 100;
 
-parameter int NUM_AMOUNT_X = 1; 
-parameter int NUM_AMOUNT_Y = 3;
-localparam int collums = NUM_AMOUNT_Y;
-
+parameter int COLUMNS = 3;
 parameter int NUMBERS = 3;
-
+parameter int ROPES = 6;
 
 //Creating hit flags for the disappearing numbers. 
 
@@ -73,28 +72,31 @@ always_ff@(posedge clk or negedge resetN) begin
 end
 
 
+
 genvar i;
 
-generate
 
-	for (i = 0; i < NUMBERS; i = i + 1) begin : NUMBER_DISPLAY_GENERATION
-		
-		
-		NUMBER_DISPLAY number (
-										.clk(clk),
-										.resetN(resetN),
-										.singleHit(singleHit),
-										.pixelX(pixelX),
-										.pixelY(pixelY),
-										.KeyPad(numbersToShow[i]), 
-										.topLeftX(topLeftX + (xDiff * (i / collums))), //TODO for some reason verilog refuses to treat my boy NUM_AMOUNT_Y as an int so i inputed this as a hard coded number. 
-										.topLeftY(topLeftY + (yDiff * (i % collums))),
-										.show(showNum[i]),
-										.numDR(numbersDR[i]),
-										.numRGB(numbersRGB[i])
-									 );
-									 
-	end
+generate
+	
+	//We have 3 numbers per column, so all in all NUMBERS/3 columns
+		for (i = 0; i < NUMBERS; i = i + 1) begin : NUMBER_DISPLAY_GENERATION
+			//creating the numbers in each column.
+			NUMBER_DISPLAY number (
+											.clk(clk),
+											.resetN(resetN),
+											.singleHit(singleHit),
+											.startOfFrame(startOfFrame),
+											.pixelX(pixelX),
+											.pixelY(pixelY),
+											.KeyPad(numbersToShow[i]), 
+											.X_SPEED(SIGNED_SPEEDS[i / 3]),
+											.INITIAL_X(INITIAL_X + ((i / 3) * xDiff)),
+											.INITIAL_Y(100 + ((i % 3) * yDiff)),
+											.show(showNum[i]),
+											.numDR(numbersDR[i]),
+											.numRGB(numbersRGB[i])
+										 );
+		end							 
 endgenerate 
 
 

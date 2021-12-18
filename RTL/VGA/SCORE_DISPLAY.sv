@@ -42,18 +42,20 @@ genvar i;
 
 generate
 
-	for (i = 1; i < NUMBERS+ 1; i = i + 1) begin : NUMBER_DISPLAY_GENERATION
+	for (i = 1; i < 4; i = i + 1) begin : NUMBER_DISPLAY_GENERATION
 		
 		
 		NUMBER_DISPLAY number (
 										.clk(clk),
 										.resetN(resetN),
 										.singleHit(singleHit),
+										.startOfFrame(1'b0), //Because these numbers dont have to move, we can treat them as if there is no start of frame.
 										.pixelX(pixelX),
 										.pixelY(pixelY),
 										.KeyPad(numbersToShow[i-1]), 
-										.topLeftX(topLeftX + (xDiff * ((i-1) / collums))), //TODO for some reason verilog refuses to treat my boy NUM_AMOUNT_Y as an int so i inputed this as a hard coded number. 
-										.topLeftY(topLeftY + (yDiff * (i % collums))),
+										.X_SPEED(0),
+										.INITIAL_X(topLeftX + (xDiff * ((i-1) / collums))), //TODO for some reason verilog refuses to treat my boy NUM_AMOUNT_Y as an int so i inputed this as a hard coded number. 
+										.INITIAL_Y(topLeftY + (yDiff * (i % collums))),
 										.show(1'b1),
 										.numDR(scoreDR[i]),
 										.numRGB(scoreRGB[i])

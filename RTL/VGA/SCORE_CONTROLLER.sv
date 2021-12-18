@@ -16,7 +16,7 @@ module SCORE_CONTROLLER (
 			output logic ShowSign
 			
 );
-parameter int NUMBERS = 3;
+parameter int NUMBERS = 9;
 int score;
 int positive_score;
 int change;
