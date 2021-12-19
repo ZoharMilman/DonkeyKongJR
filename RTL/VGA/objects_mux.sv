@@ -104,14 +104,16 @@ begin
 							
 						  end
 				
-				//Grass blocks drawing
-				else if (blocksDR) 
-						RGBOut <= blocksRGB;
 				
 				//Ceiling drawing
 				else if (ceilingDR)
 						RGBOut <= ceilingDR;
+						
+				//Grass blocks drawing
+				else if (blocksDR) 
+						RGBOut <= blocksRGB;
 				
+
 				//Water drawing			
 				else if (waterDR) 
 						RGBOut <= waterRGB;

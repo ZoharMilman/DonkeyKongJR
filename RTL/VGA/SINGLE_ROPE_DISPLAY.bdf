@@ -213,7 +213,7 @@ agreement for further details.
 	)
 )
 (symbol
-	(rect 1272 312 1496 456)
+	(rect 1264 312 1488 456)
 	(text "ropesBitMap" (rect 5 0 65 12)(font "Arial" ))
 	(text "inst" (rect 8 128 25 140)(font "Arial" ))
 	(port
@@ -464,47 +464,6 @@ agreement for further details.
 	(pt 640 392)
 )
 (connector
-	(text "resetN" (rect 1186 344 1216 361)(font "Intel Clear" ))
-	(pt 1184 360)
-	(pt 1272 360)
-)
-(connector
-	(text "clk" (rect 1202 328 1216 345)(font "Intel Clear" ))
-	(pt 1176 344)
-	(pt 1272 344)
-)
-(connector
-	(text "BoxHartTopLeftX[10..0]" (rect 952 360 1062 377)(font "Intel Clear" ))
-	(pt 984 376)
-	(pt 1272 376)
-	(bus)
-)
-(connector
-	(text "BoxHartTopLeftY[10..0]" (rect 944 376 1054 393)(font "Intel Clear" ))
-	(pt 984 392)
-	(pt 1272 392)
-	(bus)
-)
-(connector
-	(text "boxHartDrawingRequest" (rect 976 392 1090 409)(font "Intel Clear" ))
-	(pt 984 408)
-	(pt 1272 408)
-)
-(connector
-	(pt 1496 360)
-	(pt 1528 360)
-	(bus)
-)
-(connector
-	(text "ropesDrwingRequest" (rect 1482 328 1579 345)(font "Intel Clear" ))
-	(pt 1600 344)
-	(pt 1496 344)
-)
-(connector
-	(pt 1600 312)
-	(pt 1600 344)
-)
-(connector
 	(pt 1600 312)
 	(pt 1624 312)
 )
@@ -569,6 +528,47 @@ agreement for further details.
 (connector
 	(pt 440 320)
 	(pt 472 320)
+	(bus)
+)
+(connector
+	(text "resetN" (rect 1178 344 1208 361)(font "Intel Clear" ))
+	(pt 1176 360)
+	(pt 1264 360)
+)
+(connector
+	(text "clk" (rect 1194 328 1208 345)(font "Intel Clear" ))
+	(pt 1168 344)
+	(pt 1264 344)
+)
+(connector
+	(text "BoxHartTopLeftX[10..0]" (rect 944 360 1054 377)(font "Intel Clear" ))
+	(pt 984 376)
+	(pt 1264 376)
+	(bus)
+)
+(connector
+	(text "BoxHartTopLeftY[10..0]" (rect 936 376 1046 393)(font "Intel Clear" ))
+	(pt 984 392)
+	(pt 1264 392)
+	(bus)
+)
+(connector
+	(text "boxHartDrawingRequest" (rect 968 392 1082 409)(font "Intel Clear" ))
+	(pt 984 408)
+	(pt 1264 408)
+)
+(connector
+	(pt 1600 312)
+	(pt 1600 344)
+)
+(connector
+	(text "ropesDrwingRequest" (rect 1474 328 1571 345)(font "Intel Clear" ))
+	(pt 1488 344)
+	(pt 1600 344)
+)
+(connector
+	(pt 1488 360)
+	(pt 1528 360)
 	(bus)
 )
 (rectangle (rect -576 192 1824 600)(color 0 0 0)(line_width 3))
