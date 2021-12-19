@@ -23,6 +23,8 @@ module	monkey_moveCollision	(
 					//Collision related inputs
 					input logic collision,
 					input logic onRope,
+					input logic [ROPES-1:0] ropeCollisions,
+					input logic [ROPES-1:0] [1:0] electroStatus,
 					input logic onBlock, 
 					input logic objectHit,  
 					input	logic	[3:0] HitEdgeCode, //one bit per edge 
@@ -35,9 +37,13 @@ module	monkey_moveCollision	(
 					
 );
 
-logic footing;
-assign footing = (onRope | (onBlock && HitEdgeCode[0])); 
- 
+parameter ROPES = 6;
+
+
+
+
+parameter int E_TIME = 5;
+
 
 parameter int INITIAL_X = 280;
 parameter int INITIAL_Y = 185;
@@ -61,6 +67,49 @@ int Yspeed, topLeftY_FixedPoint;
 
 
 
+
+/////--------------------------------------------------------------------------------------------------------------------
+//	Handling electrified ropes. 
+logic [6:0] timer;
+int i;
+logic electrified;
+
+//If the monkey is on an electrified rope, it cant move for E_TIME seconds. 
+always_ff@(posedge clk or negedge resetN) begin
+	if (!resetN) begin
+		timer <= E_TIME * 30;
+		electrified <= 1'b0;
+	end
+	
+	//Check if the monkey got electrified
+	else begin 
+		for (i = 0; i < ROPES; i = i + 1) begin
+			if ((ropeCollisions[i] && electroStatus[i] == 2'b10)) begin 
+				electrified <= 1'b1; 
+			end
+		end
+		
+		
+		if (electrified == 1'b1) begin 
+			//Countdown
+			if (startOfFrame) begin 
+				if (timer) timer <= timer - 1;
+				//Once countdown reaches zero, we return electrified to 0 and reset the timer
+				else begin
+					timer <= E_TIME * 50;
+					electrified <= 1'b0; 
+				end
+			end
+		end
+	end
+
+end
+
+
+logic footing;
+assign footing = ((onRope && !electrified) | (onBlock && HitEdgeCode[0])); 
+
+
 //////////--------------------------------------------------------------------------------------------------------------=
 //  calculation 0f Y Axis speed using gravity or colision
 
@@ -80,22 +129,23 @@ begin
 			Y_ACCEL <= -10;
 		end
 		
-		if  (footing) begin 
-			Yspeed <= 0;
-			if (upPressed) begin 
-				//Rope Climbing
-				if (onRope) Yspeed <= -100;
-				//Jump
-				else Yspeed <= -300;
+		if (!electrified) begin
+			if  (footing) begin 
+				Yspeed <= 0;
+				if (upPressed) begin 
+					//Rope Climbing
+					if (onRope) Yspeed <= -100;
+					//Jump
+					else Yspeed <= -300;
+					
+				end
 				
-			end
-			
-			if  (downPressed && onRope) begin 
-				//Rope Climbing 
-				Yspeed <= 100;
+				if  (downPressed && onRope) begin 
+					//Rope Climbing 
+					Yspeed <= 100;
+				end
 			end
 		end
-
 		// perform  position and speed integral only 30 times per second 
 		
 		if (startOfFrame == 1'b1) begin 
@@ -126,7 +176,7 @@ begin
 		topLeftX_FixedPoint	<= INITIAL_X * FIXED_POINT_MULTIPLIER;
 	end
 	
-	else begin
+	else if (!electrified) begin
 
 		//Default value of Xspeed is the current ropes speed
 		
@@ -172,9 +222,11 @@ begin
 
 end
 //
-////get a better (64 times) resolution using integer   
-assign 	topLeftX = topLeftX_FixedPoint / FIXED_POINT_MULTIPLIER ;   // note it must be 2^n 
-assign 	topLeftY = topLeftY_FixedPoint / FIXED_POINT_MULTIPLIER ;    
+////get a better (64 times) resolution using integer
+
+   
+assign 	topLeftX = topLeftX_FixedPoint / FIXED_POINT_MULTIPLIER;   // note it must be 2^n 
+assign 	topLeftY = topLeftY_FixedPoint / FIXED_POINT_MULTIPLIER;    
 
 
 endmodule

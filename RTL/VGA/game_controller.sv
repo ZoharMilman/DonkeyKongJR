@@ -24,6 +24,7 @@ module	game_controller	(
 			output logic [ROPES-1:0] ropeCollision,
 			output logic [31:0] CURRENT_ROPE_SPEED, // equal to the speed of the rope the monkey is on
 			
+			
 			//General object collisions
 			output logic blockCollision, 
 			output logic waterCollision,

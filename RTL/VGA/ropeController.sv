@@ -40,7 +40,7 @@ always_ff@(posedge clk or negedge resetN) begin
 			if (timer) timer <= timer - 1; //Counting down given that timer is not already 0. 
 			else begin 
 				timer <= 10'd600; //Reseting the timer
-				electroStatus[i] = 2'b00;
+				electroStatus[counter] <= 2'b00;
 				if (counter == 6) counter <= 0;
 				else counter <= counter + 1;
 			end	

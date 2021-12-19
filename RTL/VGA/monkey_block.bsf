@@ -21,9 +21,9 @@ agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
-	(rect 16 16 288 304)
+	(rect 16 16 360 336)
 	(text "monkey_block" (rect 5 0 91 19)(font "Intel Clear" (font_size 8)))
-	(text "inst" (rect 8 267 24 284)(font "Intel Clear" ))
+	(text "inst" (rect 8 299 24 316)(font "Intel Clear" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -104,37 +104,51 @@ agreement for further details.
 	(port
 		(pt 0 208)
 		(input)
-		(text "onBlock" (rect 0 0 46 19)(font "Intel Clear" (font_size 8)))
-		(text "onBlock" (rect 21 203 67 222)(font "Intel Clear" (font_size 8)))
-		(line (pt 0 208)(pt 16 208))
+		(text "ropeCollisions[ROPES-1..0]" (rect 0 0 159 19)(font "Intel Clear" (font_size 8)))
+		(text "ropeCollisions[ROPES-1..0]" (rect 21 203 180 222)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 208)(pt 16 208)(line_width 3))
 	)
 	(port
 		(pt 0 224)
 		(input)
-		(text "objectHit" (rect 0 0 54 19)(font "Intel Clear" (font_size 8)))
-		(text "objectHit" (rect 21 219 75 238)(font "Intel Clear" (font_size 8)))
-		(line (pt 0 224)(pt 16 224))
+		(text "electroStatus[ROPES-1..0][1..0]" (rect 0 0 185 19)(font "Intel Clear" (font_size 8)))
+		(text "electroStatus[ROPES-1..0][1..0]" (rect 21 219 206 238)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 224)(pt 16 224)(line_width 3))
 	)
 	(port
 		(pt 0 240)
 		(input)
-		(text "addedSpeed[31..0]" (rect 0 0 116 19)(font "Intel Clear" (font_size 8)))
-		(text "addedSpeed[31..0]" (rect 21 235 137 254)(font "Intel Clear" (font_size 8)))
-		(line (pt 0 240)(pt 16 240)(line_width 3))
+		(text "onBlock" (rect 0 0 46 19)(font "Intel Clear" (font_size 8)))
+		(text "onBlock" (rect 21 235 67 254)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 240)(pt 16 240))
 	)
 	(port
-		(pt 272 32)
+		(pt 0 256)
+		(input)
+		(text "objectHit" (rect 0 0 54 19)(font "Intel Clear" (font_size 8)))
+		(text "objectHit" (rect 21 251 75 270)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 256)(pt 16 256))
+	)
+	(port
+		(pt 0 272)
+		(input)
+		(text "addedSpeed[31..0]" (rect 0 0 116 19)(font "Intel Clear" (font_size 8)))
+		(text "addedSpeed[31..0]" (rect 21 267 137 286)(font "Intel Clear" (font_size 8)))
+		(line (pt 0 272)(pt 16 272)(line_width 3))
+	)
+	(port
+		(pt 344 32)
 		(output)
 		(text "monkeyDR" (rect 0 0 64 19)(font "Intel Clear" (font_size 8)))
-		(text "monkeyDR" (rect 187 27 251 46)(font "Intel Clear" (font_size 8)))
-		(line (pt 272 32)(pt 256 32))
+		(text "monkeyDR" (rect 259 27 323 46)(font "Intel Clear" (font_size 8)))
+		(line (pt 344 32)(pt 328 32))
 	)
 	(port
-		(pt 272 48)
+		(pt 344 48)
 		(output)
 		(text "monkeyRGB[7..0]" (rect 0 0 103 19)(font "Intel Clear" (font_size 8)))
-		(text "monkeyRGB[7..0]" (rect 148 43 251 62)(font "Intel Clear" (font_size 8)))
-		(line (pt 272 48)(pt 256 48)(line_width 3))
+		(text "monkeyRGB[7..0]" (rect 220 43 323 62)(font "Intel Clear" (font_size 8)))
+		(line (pt 344 48)(pt 328 48)(line_width 3))
 	)
 	(parameter
 		"initial_x"
@@ -157,7 +171,7 @@ agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 256 272))
+		(rectangle (rect 16 16 328 304))
 	)
-	(annotation_block (parameter)(rect 288 -64 388 16))
+	(annotation_block (parameter)(rect 360 -64 460 16))
 )
