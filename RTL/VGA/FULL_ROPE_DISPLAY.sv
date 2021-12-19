@@ -11,7 +11,7 @@ module FULL_ROPE_DISPLAY (
 			//VGA inputs
 			input logic [10:0] pixelX,
 			input logic [10:0] pixelY,
-
+			input logic [ROPES-1:0] [1:0] electroStatus,
 			
 			//Collision inputs 
 			input logic [ROPES-1:0] dirToggle,
@@ -56,6 +56,7 @@ generate
 										.INITIAL_Y(80),
 										.pixelX(pixelX),
 										.pixelY(pixelY), 
+										.electroStatus(electroStatus[i]),
 										.ropesDrawingRequest(ropeDR[i]),
 										.ropesRGB(ropeRGB[i]),
 										.SPEED(SIGNED_SPEEDS[i])
@@ -77,6 +78,7 @@ generate
 										.INITIAL_Y(80),
 										.pixelX(pixelX),
 										.pixelY(pixelY), 
+										.electroStatus(electroStatus[i]),
 										.ropesDrawingRequest(ropeDR[i]),
 										.ropesRGB(ropeRGB[i]),
 										.SPEED(SIGNED_SPEEDS[i])
