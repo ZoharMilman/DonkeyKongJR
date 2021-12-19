@@ -133,13 +133,13 @@ begin
 
 		Xspeed<= INITIAL_X_SPEED + addedSpeed;
 		
-		if (rightPressed && topLeftX < 570) begin 
+		if (rightPressed && topLeftX < 570 !( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 196 && topLeftX > 180)) begin 
 			//Handling edge of screen limitations, left side
 //			if (collision && HitEdgeCode [1] == 1 && Xspeed > 0) Xspeed <= -Xspeed;
 			Xspeed <= 200;
 		end        
 			
-		if (leftPressed && topLeftX > 0) begin 
+		if (leftPressed && topLeftX > 0 !( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 388 && topLeftX > 380)) begin 
 			//Handling edge of screen limitations, right side
 //			if (collision && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= -Xspeed;
 			Xspeed <= -200;
@@ -161,7 +161,7 @@ begin
 //			if (onBlock && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= 0;
 //			hitright <= 1'b0;
 //			hitleft <= 1'b0;
-			if((390 < topLeftY && topLeftY < 423) || ( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 386 && topLeftX > 382 && Xspeed < 0) || ( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 194 && topLeftX > 190 && Xspeed > 0)) Xspeed <= 0;
+			if(390 < topLeftY && topLeftY < 423) Xspeed <= 0;
 			topLeftX_FixedPoint  <= topLeftX_FixedPoint + Xspeed;
 		end
 
