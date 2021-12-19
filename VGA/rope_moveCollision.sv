@@ -12,7 +12,7 @@ module rope_moveCollision (
 		input logic dirToggle,
 		
 		//Movement inputs
-		input int X_SPEED,
+		input logic [6:0] X_SPEED,
 		input int INITIAL_X,
 		input int INITIAL_Y,
 		

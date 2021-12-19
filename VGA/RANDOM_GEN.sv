@@ -25,7 +25,7 @@ generate
 		
 		random #(.SIZE_BITS(10), 
 			.MIN_VAL(1), 
-			.MAX_VAL(999 - i*7)
+			.MAX_VAL(999 - i*31)
 			) random_gen (.clk(clk), 
 							  .resetN(resetN),
 							  .rise(!trigger[i*3] | !trigger[i*3 + 1] | !trigger[i*3 + 2]),
@@ -37,9 +37,9 @@ endgenerate
 always_ff @(posedge clk or negedge resetN) begin
 		if (!resetN) begin
 			for (int i = 0; i < NUMBERS/3; i = i + 1) begin
-				randomNumbers[i*3] <= (numout[i] % 10);
-				randomNumbers[i*3 + 1] <= (numout[i] / 10) % 10;
-				randomNumbers[i*3 + 2] <= numout[i] / 100;
+				randomNumbers[i*3] <= 0;
+				randomNumbers[i*3 + 1] <= 0;
+				randomNumbers[i*3 + 2] <= 0;
 			end
 			trigger_d <= trigger;
 		end

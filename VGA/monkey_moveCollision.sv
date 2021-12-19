@@ -34,9 +34,9 @@ module	monkey_moveCollision	(
 					output	 logic signed	[10:0]	topLeftY  // can be negative , if the object is partliy outside 
 					
 );
-
+//topLeftY == 388 || topLeftY == 259 || topLeftY == 131
 logic footing;
-assign footing = (onRope | (onBlock && HitEdgeCode[0])); 
+assign footing = (onRope | (onBlock && ( (385 < topLeftY && topLeftY < 391) || (256 < topLeftY && topLeftY < 262) || (128 < topLeftY && topLeftY < 133) ))); 
  
 
 parameter int INITIAL_X = 280;
@@ -77,7 +77,7 @@ begin
 		//Default accelarion is 0
 		Y_ACCEL <= 0;
 		if (!footing) begin
-			Y_ACCEL <= -10;
+			Y_ACCEL <= -10; 
 		end
 		
 		if  (footing) begin 
@@ -97,9 +97,9 @@ begin
 		end
 
 		// perform  position and speed integral only 30 times per second 
-		
+		if (((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) &&  topLeftX < 384 && topLeftX > 192 && Yspeed < 0) Yspeed <= 0;
 		if (startOfFrame == 1'b1) begin 
-				if (collision && HitEdgeCode [2] == 1 && Yspeed > 0) Yspeed <= -1;
+//				if (onBlock && HitEdgeCode [2] == 1 && Yspeed > 0) Yspeed <= 0;
 				topLeftY_FixedPoint  <= topLeftY_FixedPoint + Yspeed; // position interpolation 
 				
 				if (Yspeed < MAX_Y_SPEED ) //  limit the spped while going down 
@@ -139,7 +139,7 @@ begin
 			Xspeed <= 200;
 		end        
 			
-		if (leftPressed && topLeftX > -9) begin 
+		if (leftPressed && topLeftX > 0) begin 
 			//Handling edge of screen limitations, right side
 //			if (collision && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= -Xspeed;
 			Xspeed <= -200;
@@ -157,8 +157,11 @@ begin
 		
 		//Updating the X  value using Xspeed
 		if (startOfFrame == 1'b1) begin
+//			if (onBlock && HitEdgeCode [1] == 1 && Xspeed > 0) Xspeed <= 0;
+//			if (onBlock && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= 0;
 //			hitright <= 1'b0;
 //			hitleft <= 1'b0;
+			if((390 < topLeftY && topLeftY < 423) || ( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 386 && topLeftX > 382 && Xspeed < 0) || ( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 194 && topLeftX > 190 && Xspeed > 0)) Xspeed <= 0;
 			topLeftX_FixedPoint  <= topLeftX_FixedPoint + Xspeed;
 		end
 

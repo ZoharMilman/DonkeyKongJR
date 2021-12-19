@@ -619,7 +619,7 @@ agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 216 256))
 	)
-	(annotation_block (parameter)(rect 848 312 1056 426))
+	(annotation_block (parameter)(rect 616 256 824 370))
 )
 (connector
 	(text "pixelY[10..0]" (rect 338 392 397 409)(font "Intel Clear" ))
