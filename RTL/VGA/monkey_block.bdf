@@ -593,11 +593,7 @@ agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 272 288))
 	)
-<<<<<<< HEAD
 	(annotation_block (parameter)(rect 576 248 791 400))
-=======
-	(annotation_block (parameter)(rect 616 256 824 370))
->>>>>>> e693ef3bafc044939b94fea28847ffe7d8ec35af
 )
 (symbol
 	(rect 936 368 1160 512)
