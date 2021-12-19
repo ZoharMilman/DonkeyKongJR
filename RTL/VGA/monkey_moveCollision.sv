@@ -129,9 +129,11 @@ begin
 			Y_ACCEL <= -10;
 		end
 		
-		if (!electrified) begin
-			if  (footing) begin 
-				Yspeed <= 0;
+
+		if  (footing) begin 
+			Yspeed <= 0;
+			if (!electrified) begin 
+						
 				if (upPressed) begin 
 					//Rope Climbing
 					if (onRope) Yspeed <= -100;
@@ -144,8 +146,10 @@ begin
 					//Rope Climbing 
 					Yspeed <= 100;
 				end
+			
 			end
 		end
+
 		// perform  position and speed integral only 30 times per second 
 		
 		if (startOfFrame == 1'b1) begin 
