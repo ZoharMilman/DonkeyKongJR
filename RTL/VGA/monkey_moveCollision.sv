@@ -37,13 +37,13 @@ module	monkey_moveCollision	(
 					
 );
 
+
 parameter ROPES = 6;
-
-
 
 
 parameter int E_TIME = 5;
 
+//topLeftY == 388 || topLeftY == 259 || topLeftY == 131
 
 parameter int INITIAL_X = 280;
 parameter int INITIAL_Y = 185;
@@ -107,7 +107,7 @@ end
 
 
 logic footing;
-assign footing = ((onRope && !electrified) | (onBlock && HitEdgeCode[0])); 
+assign footing = ((onRope && !electrified) | (onBlock && ( (385 < topLeftY && topLeftY < 391) || (256 < topLeftY && topLeftY < 262) || (128 < topLeftY && topLeftY < 133) ))); 
 
 
 //////////--------------------------------------------------------------------------------------------------------------=
@@ -126,7 +126,7 @@ begin
 		//Default accelarion is 0
 		Y_ACCEL <= 0;
 		if (!footing) begin
-			Y_ACCEL <= -10;
+			Y_ACCEL <= -10; 
 		end
 		
 
@@ -151,9 +151,9 @@ begin
 		end
 
 		// perform  position and speed integral only 30 times per second 
-		
+		if (((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) &&  topLeftX < 384 && topLeftX > 192 && Yspeed < 0) Yspeed <= 0;
 		if (startOfFrame == 1'b1) begin 
-				if (collision && HitEdgeCode [2] == 1 && Yspeed > 0) Yspeed <= -1;
+//				if (onBlock && HitEdgeCode [2] == 1 && Yspeed > 0) Yspeed <= 0;
 				topLeftY_FixedPoint  <= topLeftY_FixedPoint + Yspeed; // position interpolation 
 				
 				if (Yspeed < MAX_Y_SPEED ) //  limit the spped while going down 
@@ -187,16 +187,16 @@ begin
 
 		Xspeed<= INITIAL_X_SPEED + addedSpeed;
 		
-		if (rightPressed && topLeftX < 570) begin 
+		if (rightPressed && topLeftX < 570 && !( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 196 && topLeftX > 180)) begin 
 			//Handling edge of screen limitations, left side
 //			if (collision && HitEdgeCode [1] == 1 && Xspeed > 0) Xspeed <= -Xspeed;
-			Xspeed <= 200;
+			Xspeed <= 150;
 		end        
 			
-		if (leftPressed && topLeftX > -9) begin 
+		if (leftPressed && topLeftX > 0 && !( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 388 && topLeftX > 380)) begin 
 			//Handling edge of screen limitations, right side
 //			if (collision && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= -Xspeed;
-			Xspeed <= -200;
+			Xspeed <= -150;
 		end
 //		if (topLeftX == 570 || topLeftX == 4) begin
 //			if (Xspeed > 0 && topLeftX == 570) begin
@@ -211,8 +211,11 @@ begin
 		
 		//Updating the X  value using Xspeed
 		if (startOfFrame == 1'b1) begin
+//			if (onBlock && HitEdgeCode [1] == 1 && Xspeed > 0) Xspeed <= 0;
+//			if (onBlock && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= 0;
 //			hitright <= 1'b0;
 //			hitleft <= 1'b0;
+			if(390 < topLeftY && topLeftY < 423) Xspeed <= 0;
 			topLeftX_FixedPoint  <= topLeftX_FixedPoint + Xspeed;
 		end
 

@@ -17,7 +17,7 @@ module FULL_ROPE_DISPLAY (
 			input logic [ROPES-1:0] dirToggle,
 			input logic [ROPES-1:0] monkeyCollision,
 			//Movement inputs 
-//			input logic [ROPES-1:0] [6:0] SPEEDS,
+			input logic [ROPES-1:0] [6:0] X_SPEED,
 			
 			//We have a drawing request and rgbout for each of the 12 numbers
 			output logic [ROPES-1:0] ropeDR, //output that the pixel should be dispalyed 
@@ -28,7 +28,7 @@ module FULL_ROPE_DISPLAY (
 			
 );
 
-int j;
+
 
 //logic [ROPES-1:0][6:0] SPEEDS = {7'b1000000, 7'b1000100, 7'b0001010};
 
@@ -39,19 +39,20 @@ parameter int LEFT_ROPES = 3;
 parameter int RIGHT_ROPES = 3;
 parameter int ROPES = 6; 
 
+
 genvar i;
 
-generate
+generate  
+	
 
 	for (i = 0; i < LEFT_ROPES; i = i + 1) begin : LEFT_ROPE_DISPLAY_GENERATION
-		
 		
 		SINGLE_ROPE_DISPLAY rope (
 										.clk(clk),
 										.resetN(resetN),
 										.startOfFrame(startOfFrame),
 										.dirToggle(dirToggle[i]),
-										.X_SPEED((i+1) * 20),
+										.X_SPEED(X_SPEED[i]),
 										.INITIAL_X(100),
 										.INITIAL_Y(80),
 										.pixelX(pixelX),
@@ -67,13 +68,12 @@ generate
 	
 	for (i = LEFT_ROPES; i < ROPES; i = i + 1) begin : RIGHT_ROPE_DISPLAY_GENERATION
 		
-		
 		SINGLE_ROPE_DISPLAY rope (
 										.clk(clk),
 										.resetN(resetN),
 										.startOfFrame(startOfFrame),
 										.dirToggle(dirToggle[i]),
-										.X_SPEED((i+1) * 20),
+										.X_SPEED(X_SPEED[i]),
 										.INITIAL_X(400),
 										.INITIAL_Y(80),
 										.pixelX(pixelX),

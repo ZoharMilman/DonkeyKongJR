@@ -24,8 +24,8 @@ module	objects_mux	(
 					input    logic [1:0] [7:0] operandRGB,
 					
 		  // scoreboard
-					input    logic [3:0] scoreboardDR,
-					input    logic [3:0] [7:0] scoreboardRGB,
+					input    logic [6:0] scoreboardDR,
+					input    logic [6:0] [7:0] scoreboardRGB,
 					
 
 		  // ropes
@@ -70,7 +70,7 @@ begin
 				
 				//Scoreboard drawing
 				else if (scoreboardDR) begin
-					for (i = 0; i < 4; i = i + 1) begin
+					for (i = 0; i < 7; i = i + 1) begin
 				
 							if (scoreboardDR[i]) 
 								RGBOut <= scoreboardRGB[i];
