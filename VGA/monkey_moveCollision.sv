@@ -31,7 +31,8 @@ module	monkey_moveCollision	(
 					
 					//Movement inputs
 					input int addedSpeed,
-
+					
+					output    logic GameOverN,
 					output	 logic signed 	[10:0]	topLeftX, // output the top left corner 
 					output	 logic signed	[10:0]	topLeftY  // can be negative , if the object is partliy outside 
 					
@@ -107,7 +108,7 @@ end
 
 
 logic footing;
-assign footing = ((onRope && !electrified) | (onBlock && ( (385 < topLeftY && topLeftY < 391) || (256 < topLeftY && topLeftY < 262) || (128 < topLeftY && topLeftY < 133) ))); 
+assign footing = ((onRope && !electrified) | (onBlock && ( (383 < topLeftY && topLeftY < 391) || (255 < topLeftY && topLeftY < 263) ))); 
 
 
 //////////--------------------------------------------------------------------------------------------------------------=
@@ -151,7 +152,7 @@ begin
 		end
 
 		// perform  position and speed integral only 30 times per second 
-		if (((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) &&  topLeftX < 384 && topLeftX > 192 && Yspeed < 0) Yspeed <= 0;
+		if ((263 < topLeftY && topLeftY < 323) &&  topLeftX < 384 && topLeftX > 224 && Yspeed < 0) Yspeed <= 0;
 		if (startOfFrame == 1'b1) begin 
 //				if (onBlock && HitEdgeCode [2] == 1 && Yspeed > 0) Yspeed <= 0;
 				topLeftY_FixedPoint  <= topLeftY_FixedPoint + Yspeed; // position interpolation 
@@ -184,16 +185,17 @@ begin
 
 		//Default value of Xspeed is the current ropes speed
 		
-
-		Xspeed<= INITIAL_X_SPEED + addedSpeed;
+		if ((262 < topLeftY && topLeftY < 323) && (topLeftX < 387 && topLeftX > 381 && addedSpeed < 0)) Xspeed<= INITIAL_X_SPEED;
+		else if ((262 < topLeftY && topLeftY < 323) && (topLeftX > 221 && topLeftX < 227 && addedSpeed > 0)) Xspeed<= INITIAL_X_SPEED;
+		else Xspeed<= INITIAL_X_SPEED + addedSpeed;
 		
-		if (rightPressed && topLeftX < 570 && !( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 196 && topLeftX > 180)) begin 
+		if (rightPressed && topLeftX < 603 && !((262 < topLeftY && topLeftY < 323) && topLeftX > 221 && topLeftX < 227)) begin 
 			//Handling edge of screen limitations, left side
 //			if (collision && HitEdgeCode [1] == 1 && Xspeed > 0) Xspeed <= -Xspeed;
 			Xspeed <= 150;
 		end        
 			
-		if (leftPressed && topLeftX > 0 && !( ((262 < topLeftY && topLeftY < 323) || (132 < topLeftY && topLeftY < 195)) && topLeftX < 388 && topLeftX > 380)) begin 
+		if (leftPressed && topLeftX > 5 && !((262 < topLeftY && topLeftY < 323) && topLeftX < 387 && topLeftX > 381)) begin 
 			//Handling edge of screen limitations, right side
 //			if (collision && HitEdgeCode [3] == 1 && Xspeed < 0) Xspeed <= -Xspeed;
 			Xspeed <= -150;
@@ -208,7 +210,6 @@ begin
 //				hitleft <= 1'b1;
 //			end
 //		end
-		
 		//Updating the X  value using Xspeed
 		if (startOfFrame == 1'b1) begin
 //			if (onBlock && HitEdgeCode [1] == 1 && Xspeed > 0) Xspeed <= 0;
@@ -234,6 +235,6 @@ end
    
 assign 	topLeftX = topLeftX_FixedPoint / FIXED_POINT_MULTIPLIER;   // note it must be 2^n 
 assign 	topLeftY = topLeftY_FixedPoint / FIXED_POINT_MULTIPLIER;    
-
+assign   GameOverN = (topLeftY > 475) ? 1'b0: 1'b1;
 
 endmodule

@@ -368,6 +368,22 @@ agreement for further details.
 		(line (pt 78 12)(pt 82 8))
 	)
 )
+(pin
+	(output)
+	(rect 1712 424 1888 440)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "GameOverN" (rect 90 0 152 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
 (symbol
 	(rect 1352 336 1592 480)
 	(text "monkeyBitMap" (rect 5 0 78 12)(font "Arial" ))
@@ -638,16 +654,23 @@ agreement for further details.
 	(port
 		(pt 288 32)
 		(output)
-		(text "topLeftX[10..0]" (rect 0 0 73 12)(font "Arial" ))
-		(text "topLeftX[10..0]" (rect 206 27 279 39)(font "Arial" ))
-		(line (pt 288 32)(pt 272 32)(line_width 3))
+		(text "GameOverN" (rect 0 0 62 12)(font "Arial" ))
+		(text "GameOverN" (rect 215 27 277 39)(font "Arial" ))
+		(line (pt 288 32)(pt 272 32))
 	)
 	(port
 		(pt 288 48)
 		(output)
-		(text "topLeftY[10..0]" (rect 0 0 75 12)(font "Arial" ))
-		(text "topLeftY[10..0]" (rect 204 43 279 55)(font "Arial" ))
+		(text "topLeftX[10..0]" (rect 0 0 73 12)(font "Arial" ))
+		(text "topLeftX[10..0]" (rect 206 43 279 55)(font "Arial" ))
 		(line (pt 288 48)(pt 272 48)(line_width 3))
+	)
+	(port
+		(pt 288 64)
+		(output)
+		(text "topLeftY[10..0]" (rect 0 0 75 12)(font "Arial" ))
+		(text "topLeftY[10..0]" (rect 204 59 279 71)(font "Arial" ))
+		(line (pt 288 64)(pt 272 64)(line_width 3))
 	)
 	(parameter
 		"ROPES"
@@ -687,7 +710,7 @@ agreement for further details.
 	(drawing
 		(rectangle (rect 16 16 272 288))
 	)
-	(annotation_block (parameter)(rect 848 280 1056 432))
+	(annotation_block (parameter)(rect 560 224 768 376))
 )
 (connector
 	(pt 1736 376)
@@ -770,18 +793,6 @@ agreement for further details.
 	(text "smileyRecDR" (rect 1264 416 1327 433)(font "Intel Clear" ))
 	(pt 1160 432)
 	(pt 1352 432)
-)
-(connector
-	(text "SmileyTLX[10..0]" (rect 844 448 925 465)(font "Intel Clear" ))
-	(pt 848 464)
-	(pt 936 464)
-	(bus)
-)
-(connector
-	(text "SmileyTLY[10..0]" (rect 842 464 923 481)(font "Intel Clear" ))
-	(pt 848 480)
-	(pt 936 480)
-	(bus)
 )
 (connector
 	(text "pixelY[10..0]" (rect 106 392 165 409)(font "Intel Clear" ))
@@ -939,6 +950,48 @@ agreement for further details.
 	(text "collision" (rect 370 560 408 577)(font "Intel Clear" ))
 	(pt 152 576)
 	(pt 560 576)
+)
+(connector
+	(pt 928 480)
+	(pt 928 496)
+	(bus)
+)
+(connector
+	(pt 936 480)
+	(pt 928 480)
+	(bus)
+)
+(connector
+	(pt 912 464)
+	(pt 936 464)
+	(bus)
+)
+(connector
+	(pt 912 464)
+	(pt 912 480)
+	(bus)
+)
+(connector
+	(text "SmileyTLX[10..0]" (rect 852 464 933 481)(font "Intel Clear" ))
+	(pt 912 480)
+	(pt 848 480)
+	(bus)
+)
+(connector
+	(text "SmileyTLY[10..0]" (rect 858 480 939 497)(font "Intel Clear" ))
+	(pt 848 496)
+	(pt 928 496)
+	(bus)
+)
+(connector
+	(text "GameOverN" (rect 858 448 917 465)(font "Intel Clear" ))
+	(pt 848 464)
+	(pt 904 464)
+)
+(connector
+	(text "GameOverN" (rect 1634 416 1693 433)(font "Intel Clear" ))
+	(pt 1624 432)
+	(pt 1712 432)
 )
 (junction (pt 152 592))
 (text "// (c) Technion IIT, Department of Electrical Engineering 2021" (rect 168 24 527 43)(font "Intel Clear" (font_size 8)))

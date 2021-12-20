@@ -150,6 +150,13 @@ agreement for further details.
 		(text "monkeyRGB[7..0]" (rect 220 43 323 62)(font "Intel Clear" (font_size 8)))
 		(line (pt 344 48)(pt 328 48)(line_width 3))
 	)
+	(port
+		(pt 344 64)
+		(output)
+		(text "GameOverN" (rect 0 0 73 19)(font "Intel Clear" (font_size 8)))
+		(text "GameOverN" (rect 250 59 323 78)(font "Intel Clear" (font_size 8)))
+		(line (pt 344 64)(pt 328 64))
+	)
 	(parameter
 		"initial_x"
 		"280"

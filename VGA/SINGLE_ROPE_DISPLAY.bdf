@@ -451,7 +451,7 @@ agreement for further details.
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"OBJECT_HEIGHT_Y"
-		"256"
+		"288"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter

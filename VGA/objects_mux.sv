@@ -24,8 +24,8 @@ module	objects_mux	(
 					input    logic [1:0] [7:0] operandRGB,
 					
 		  // scoreboard
-					input    logic [6:0] scoreboardDR,
-					input    logic [6:0] [7:0] scoreboardRGB,
+					input    logic [9:0] scoreboardDR,
+					input    logic [9:0] [7:0] scoreboardRGB,
 					
 
 		  // ropes
@@ -44,7 +44,11 @@ module	objects_mux	(
 					input    logic [7:0] ceilingRGB, 
 			
 		  // background 
-					input		logic	[7:0] backGroundRGB, 
+					input		logic	[7:0] backGroundRGB,
+					
+		 //WIN sign
+					input    logic  WINDR,
+					input    logic [7:0] WINRGB,
 			
 			
 				   output	logic	[7:0] RGBOut
@@ -65,12 +69,16 @@ begin
 	end
 	
 	else begin
-		if (monkeyDrawingRequest == 1'b1 )   
-			RGBOut <= monkeyRGB;  //first priority 
+			if (monkeyDrawingRequest == 1'b1 )   
+				RGBOut <= monkeyRGB;  //first priority 
+				
+				//win sign drawing
+				else if (WINDR == 1'b1 )   
+					RGBOut <= WINRGB;
 				
 				//Scoreboard drawing
 				else if (scoreboardDR) begin
-					for (i = 0; i < 7; i = i + 1) begin
+					for (i = 0; i < 10; i = i + 1) begin
 				
 							if (scoreboardDR[i]) 
 								RGBOut <= scoreboardRGB[i];
@@ -78,7 +86,7 @@ begin
 						  end
 				end
 				
-
+			
 				//Check for every number if it has a drawing request
 				else if (numbersDR) begin
 					for (i = 0; i < NUMBERS; i = i + 1) begin
